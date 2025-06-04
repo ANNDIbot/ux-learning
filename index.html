@@ -1,0 +1,820 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2487.6">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+  </style>
+</head>
+<body>
+<p class="p1">&lt;!DOCTYPE html&gt;</p>
+<p class="p1">&lt;html lang="zh-CN" class="scroll-smooth"&gt;</p>
+<p class="p1">&lt;head&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta charset="UTF-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;title&gt;《点石成金》单页交互式学习应用&lt;/title&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;script src="https://cdn.tailwindcss.com"&gt;&lt;/script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;script src="https://cdn.jsdelivr.net/npm/chart.js"&gt;&lt;/script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;link rel="preconnect" href="https://fonts.googleapis.com"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;link rel="preconnect" href="https://fonts.gstatic.com" crossorigin&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&amp;display=swap" rel="stylesheet"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Chosen Palette: Warm Neutrals --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Application Structure Plan: This application is a single-page interactive web application, designed for a clean and spacious aesthetic. It features a sticky header with main navigation links for smooth scrolling to specific sections. All content sections (Home, Core Philosophy, User Behavior, Design Principles, Usability Testing, Mobile Design) are displayed sequentially. The navigation bar dynamically highlights the current section as the user scrolls. The "Home" section is now a minimalist, full-width welcoming banner without a distinct white content block. Each subsequent section is encapsulated within a visually distinct, spacious content block, emphasizing modularity. The "Design Principles" section uses accordion interactions for detailed explanations and multiple illustrative HTML/CSS diagrams. --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Visualization &amp; Content Choices: The application provides expanded textual content for each section, including original English terms for key concepts. HTML/CSS-based diagrams are extensively used to illustrate design principles, showing clear good vs. bad examples. The "Usability Testing" section features a Chart.js bar chart for quantitative insights and an HTML/CSS flow diagram for the testing process. The "Mobile Design" section includes an enlarged phone mockup with clear touch target examples. All visual elements are built purely with HTML and CSS, adhering to the no SVG/Mermaid constraint, ensuring a lightweight, customizable, and aesthetically clean presentation. --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;style&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>body {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-family: 'Noto Sans SC', sans-serif;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: #FDFBF8; /* Light, warm background */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: #383838; /* Dark grey for text */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>line-height: 1.9; /* Further increased line height for more air */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.nav-link {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transition: color 0.3s, border-color 0.3s;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-weight: 500;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.nav-link.active {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: #D97706; /* Amber-700 */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-bottom-color: #D97706;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.card {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transition: transform 0.3s, box-shadow 0.3s;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border: 1px solid #F3EFEA; /* Subtle border for cards */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 2.75rem; /* Increased padding */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.card:hover {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transform: translateY(-8px); /* More pronounced lift on hover */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>box-shadow: 0 16px 28px -8px rgba(0, 0, 0, 0.1), 0 8px 12px -4px rgba(0, 0, 0, 0.08); /* Enhanced shadow */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.accordion-content {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>max-height: 0;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>overflow: hidden;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transition: max-height 0.5s ease-in-out;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.accordion-header {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-bottom: 1px solid #F3EFEA; /* Subtle border for accordion headers */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 2rem 1.75rem; /* Increased padding */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.accordion-item:last-child .accordion-header {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-bottom: none; /* No border for the last header */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.chart-container {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>position: relative;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>width: 100%;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>max-width: 700px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin-left: auto;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin-right: auto;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>height: 300px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>max-height: 400px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: #FFFFFF; /* Chart background */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 1rem; /* More rounded */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>box-shadow: 0 6px 12px -2px rgba(0, 0, 0, 0.08), 0 3px 6px -1px rgba(0, 0, 0, 0.05); /* Enhanced shadow */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 2rem; /* Increased padding */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>@media (min-width: 768px) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>.chart-container {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>height: 350px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* Diagram specific styles */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.diagram-box {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border: 1px solid #E5E7EB;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 12px 16px; /* Increased padding */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 10px; /* More rounded */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: #F9FAFB;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: 1rem; /* Larger font */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: #4B5563;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1); /* Enhanced shadow */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.arrow {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>width: 30px; /* Increased arrow length */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>height: 2px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: #9CA3AF;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>position: relative;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.arrow::after {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>content: '';</p>
+<p class="p1"><span class="Apple-converted-space">            </span>position: absolute;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>right: 0;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>top: -5px; /* Adjusted position for thicker arrow */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>width: 0;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>height: 0;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-style: solid;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-width: 6px 0 6px 10px; /* Thicker arrow head */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-color: transparent transparent transparent #9CA3AF;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.diagram-eye {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: 3.2rem; /* Larger icon */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>line-height: 1;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: #D97706;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 16px; /* More space below icon */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.diagram-check {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: 3.2rem;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>line-height: 1;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: #28A745;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 16px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.diagram-cross {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: 3.2rem;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>line-height: 1;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: #DC3545;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 16px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.diagram-element {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border: 1px solid #D1D5DB;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: #F3F4F6;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 10px 14px; /* Increased padding */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 8px; /* More rounded */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: 0.95rem; /* Larger font */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: #374151;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.diagram-link {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: #3B82F6;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>text-decoration: underline;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.diagram-button {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: #D97706;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: white;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 10px 14px; /* Increased padding */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 8px; /* More rounded */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: 0.95rem;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.phone-outline {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>width: 200px; /* Even larger phone */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>height: 360px; /* Even larger phone */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border: 12px solid #333; /* Thicker border */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 30px; /* More rounded corners */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: #FDFBF8;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>position: relative;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>overflow: hidden;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>box-shadow: 0 20px 40px rgba(0,0,0,0.2); /* Enhanced shadow */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 1rem; /* Increased internal padding */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.touch-target {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: rgba(217, 119, 6, 0.3);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border: 1px solid #D97706;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 8px; /* More rounded */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>position: absolute;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>display: flex;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>align-items: center;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>justify-content: center;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: 0.95rem; /* Larger font */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: #D97706;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-weight: bold;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.diagram-grid {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>display: grid;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>grid-template-columns: 1fr;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>gap: 3rem; /* Increased gap */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin-top: 2.5rem; /* Increased margin */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>@media (min-width: 768px) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>.diagram-grid {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>grid-template-columns: 1fr 1fr;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.diagram-container {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: #F9FAFB;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border: 1px solid #E5E7EB;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 12px; /* More rounded */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 2rem; /* Increased padding */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>display: flex;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>flex-direction: column;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>align-items: center;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>text-align: center;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08); /* Enhanced shadow */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.diagram-container p {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-weight: 600;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 1.25rem; /* More space below heading */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.diagram-example {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>width: 100%;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>height: 160px; /* Taller examples */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border: 1px solid #D1D5DB;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: #FFFFFF;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 8px; /* More rounded */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 1rem; /* Increased padding */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>display: flex;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>flex-direction: column;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>justify-content: center;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>align-items: center;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: 1rem; /* Larger font */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: #4B5563;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.diagram-example.bad {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-color: #EF4444;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.diagram-example.good {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-color: #22C55E;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.diagram-example .h-line {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>height: 12px; /* Thicker lines */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: #D1D5DB;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 8px; /* More spacing */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.diagram-example .h-line.bold {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>height: 16px; /* Thicker bold lines */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: #D97706;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.diagram-example .bullet {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>width: 10px; /* Larger bullet */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>height: 10px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: #D97706;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 50%;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin-right: 8px; /* More spacing */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.diagram-example .link-text {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: #3B82F6;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>text-decoration: underline;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.diagram-example .button-style {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: #D97706;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: white;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 8px 16px; /* Increased padding */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 8px; /* More rounded */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.diagram-example .icon-placeholder {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: 2.2rem; /* Larger icon */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: #D97706;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* General section spacing */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>section {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding-top: 6rem; /* More top padding for sections */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 8rem; /* More bottom margin for sections */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>section:first-of-type {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding-top: 4rem; /* Adjust first section's top padding */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.section-content-block {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: #FFFFFF;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 4rem; /* Even more generous padding for main content blocks */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 1.5rem; /* More rounded corners for main blocks */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>box-shadow: 0 12px 24px -6px rgba(0, 0, 0, 0.12), 0 8px 16px -4px rgba(0, 0, 0, 0.08); /* Enhanced shadow */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.section-title {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: 2.25rem; /* Adjusted main section titles to be smaller */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 1.75rem; /* More space below main titles */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.section-subtitle {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: 1.1rem; /* Adjusted subtitles */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 2.25rem; /* More space below subtitles */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.section-intro-text {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: 1rem; /* Adjusted intro text */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 3rem; /* More space below intro text */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.subsection-title {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: 1.75rem; /* Adjusted subsection titles to be smaller */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 1.75rem; /* More space below subsection titles */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.subsection-intro-text {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 2rem; /* More space below subsection intro text */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* Home section specific styling - no white block */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>#home {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: transparent; /* Remove white background */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>box-shadow: none; /* Remove shadow */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding-top: 8rem; /* More top padding for a banner feel */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding-bottom: 8rem; /* More bottom padding */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 6rem; /* Adjust margin to fit new style */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>#home .home-title {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: 3.5rem; /* Larger title for home */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 2.5rem; /* More space below title */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>#home .home-subtitle {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: 1.5rem; /* Larger subtitle for home */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 3rem; /* More space below subtitle */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>#home .home-text {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: 1.1rem; /* Larger text for home */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/style&gt;</p>
+<p class="p1">&lt;/head&gt;</p>
+<p class="p1">&lt;body class="antialiased"&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;header id="header" class="bg-white/80 backdrop-blur-md sticky top-0 z-50 shadow-sm"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;nav class="container mx-auto px-6 py-3"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="flex justify-between items-center"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="text-xl font-bold text-amber-700"&gt;点石成金&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="hidden md:flex space-x-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;a href="#home" class="nav-link pb-1 border-b-2 border-transparent hover:text-amber-600"&gt;首页 (Home)&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;a href="#philosophy" class="nav-link pb-1 border-b-2 border-transparent hover:text-amber-600"&gt;核心理念 (Core Philosophy)&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;a href="#behavior" class="nav-link pb-1 border-b-2 border-transparent hover:text-amber-600"&gt;用户行为 (User Behavior)&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;a href="#principles" class="nav-link pb-1 border-b-2 border-transparent hover:text-amber-600"&gt;设计原则 (Design Principles)&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;a href="#testing" class="nav-link pb-1 border-b-2 border-transparent hover:text-amber-600"&gt;可用性测试 (Usability Testing)&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;a href="#mobile" class="nav-link pb-1 border-b-2 border-transparent hover:text-amber-600"&gt;移动端设计 (Mobile Design)&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="md:hidden"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;select id="mobile-nav" class="bg-white border border-gray-300 rounded-md py-1 px-2 text-sm"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;option value="#home"&gt;首页 (Home)&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;option value="#philosophy"&gt;核心理念 (Core Philosophy)&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;option value="#behavior"&gt;用户行为 (User Behavior)&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;option value="#principles"&gt;设计原则 (Design Principles)&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;option value="#testing"&gt;可用性测试 (Usability Testing)&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;option value="#mobile"&gt;移动端设计 (Mobile Design)&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/select&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/nav&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/header&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;main class="container mx-auto px-6 py-8 md:py-12"&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;section id="home" class="pt-16 -mt-16 mb-32 text-center"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;h1 class="home-title font-bold text-amber-800"&gt;欢迎来到《点石成金》学习应用&lt;/h1&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;p class="home-subtitle text-gray-600 max-w-3xl mx-auto"&gt;本应用旨在帮助您深入理解史蒂夫·克鲁格所著《点石成金》一书中的核心可用性设计理念与实践方法。&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;p class="home-text text-gray-700 max-w-3xl mx-auto"&gt;通过滚动页面或点击上方导航，您可以探索各个章节，并通过丰富的样式示意图更直观地掌握如何设计出“别让我思考”的优秀Web和移动产品。&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;section id="philosophy" class="pt-20 -mt-16 mb-32"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="section-content-block"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;h1 class="section-title font-bold text-amber-800 text-center"&gt;核心理念：别让我思考 (Don't Make Me Think)&lt;/h1&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;p class="section-subtitle text-gray-600 max-w-3xl mx-auto text-center"&gt;这是Web和移动可用性的第一定律。一个好的设计应该是“不言而喻”的，用户看到它，就知道该如何使用，无需任何不必要的思考、猜测或求助。&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;p class="section-intro-text text-gray-700 max-w-3xl mx-auto text-center mb-16"&gt;当用户需要思考时，他们会感到困惑、沮丧，甚至可能放弃使用你的产品。我们的目标是消除这种思考，让用户能顺畅地完成他们的目标。&lt;/p&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="flex flex-col items-center"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h3 class="subsection-title font-semibold mb-8"&gt;用户体验路径对比&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="flex flex-col md:flex-row items-center justify-center space-y-12 md:space-y-0 md:space-x-16"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="flex flex-col items-center"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;p class="font-bold text-xl mb-6 text-red-600"&gt;糟糕的设计路径&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div class="flex flex-col items-center space-y-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;div class="diagram-box"&gt;用户访问 (User Visit)&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;div class="arrow transform rotate-90"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;div class="diagram-box"&gt;困惑/不解 (Confusion)&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;div class="arrow transform rotate-90"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;div class="diagram-box"&gt;被迫思考 (Forced Thinking)&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;div class="arrow transform rotate-90"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;div class="diagram-box"&gt;产生沮丧 (Frustration)&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;div class="arrow transform rotate-90"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;div class="diagram-box text-red-600 font-bold"&gt;放弃使用 (Abandonment)&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="flex flex-col items-center"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;p class="font-bold text-xl mb-6 text-green-600"&gt;优秀的设计路径&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div class="flex flex-col items-center space-y-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;div class="diagram-box"&gt;用户访问 (User Visit)&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;div class="arrow transform rotate-90"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;div class="diagram-box"&gt;直观理解 (Intuitive Understanding)&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;div class="arrow transform rotate-90"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;div class="diagram-box"&gt;顺畅操作 (Smooth Operation)&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;div class="arrow transform rotate-90"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;div class="diagram-box"&gt;高效完成 (Efficient Completion)&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;div class="arrow transform rotate-90"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;div class="diagram-box text-green-600 font-bold"&gt;达成目标 (Goal Achieved)&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;section id="behavior" class="pt-20 -mt-16 mb-32"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="section-content-block"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="text-center mb-12"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h2 class="section-title font-bold mb-4"&gt;洞察用户行为 (User Behavior Insights)&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="section-subtitle text-gray-500"&gt;理解用户的真实行为模式，是做出好设计的前提。我们以为用户会仔细阅读、理性选择，但事实并非如此。&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="section-intro-text text-gray-700 max-w-3xl mx-auto mt-6 mb-12"&gt;用户在使用网站和应用时，往往表现出以下几种典型行为，这些行为深刻影响着他们如何与界面互动。&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="grid md:grid-cols-3 gap-12"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="card bg-white p-8 rounded-xl shadow-sm text-center"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="diagram-eye mb-6"&gt;👀&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;h3 class="text-xl font-semibold mb-4"&gt;用户扫描 (Scanning)，而非阅读&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;p class="text-gray-600 mb-6"&gt;用户很少逐字阅读页面内容，他们会快速浏览（扫描）页面，寻找能吸引他们的关键词、链接或视觉元素。他们是在寻找“信息碎片”，而不是阅读“长篇大论”。&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="flex flex-col items-center mt-6"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;p class="font-semibold text-sm mb-4"&gt;扫描示意&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div class="w-full bg-gray-100 p-4 rounded-md border border-gray-200"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;div class="h-4 bg-gray-300 w-3/4 mb-3"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;div class="h-4 bg-gray-300 w-1/2 mb-3"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;div class="h-5 bg-amber-200 w-full mb-3 font-bold text-amber-800 flex items-center justify-center text-sm"&gt;重要标题 (Key Title)&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;div class="h-4 bg-gray-300 w-2/3 mb-3"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;div class="h-5 bg-amber-200 w-1/3 font-bold text-amber-800 flex items-center justify-center text-sm"&gt;关键词 (Keyword)&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="card bg-white p-8 rounded-xl shadow-sm text-center"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="diagram-check mb-6"&gt;✅&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;h3 class="text-xl font-semibold mb-4"&gt;用户追求满意 (Satisficing)，而非最佳&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;p class="text-gray-600 mb-6"&gt;用户不会花大量时间去比较所有选项，以找到“最优解”。一旦找到一个“足够好”的、能解决当前问题的方案，他们就会停下来并点击。这种行为被称为“满意即可”（Satisficing）。&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="flex flex-col items-center mt-6"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;p class="font-semibold text-sm mb-4"&gt;决策示意&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div class="flex flex-col items-center space-y-3"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;div class="diagram-box"&gt;方案 A (Option A)&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;div class="diagram-box"&gt;方案 B (Option B - Good Enough)&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;div class="diagram-box"&gt;方案 C (Option C - Optimal, but needs more thought)&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;div class="diagram-box text-green-600 font-bold"&gt;用户选择 B (User Chooses B)&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="card bg-white p-8 rounded-xl shadow-sm text-center"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="diagram-cross mb-6"&gt;🔄&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;h3 class="text-xl font-semibold mb-4"&gt;用户乐于试错 (Trial and Error)，而非理解&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;p class="text-gray-600 mb-6"&gt;当不确定如何操作时，用户更倾向于直接点击尝试，而不是去阅读冗长的说明文档。好的设计应允许用户安全地试错、快速获得反馈并轻松返回。&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="flex flex-col items-center mt-6"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;p class="font-semibold text-sm mb-4"&gt;试错循环&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div class="flex flex-col items-center space-y-3"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;div class="diagram-box"&gt;尝试操作 (Try Action)&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;div class="arrow transform rotate-90"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;div class="diagram-box"&gt;查看结果 (See Result)&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;div class="arrow transform rotate-90"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;div class="diagram-box"&gt;调整/再尝试 (Adjust/Retry)&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;section id="principles" class="pt-20 -mt-16 mb-32"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="section-content-block"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="text-center mb-12"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h2 class="section-title font-bold mb-4"&gt;核心设计原则 (Core Design Principles)&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="section-subtitle text-gray-500"&gt;遵循这些原则，可以帮助我们创造出更直观、易用的产品。点击下方卡片，查看每个原则的详细解释和示意图。&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="section-intro-text text-gray-700 max-w-3xl mx-auto mt-6 mb-12"&gt;这些原则是“别让我思考”理念的具体实践，它们将指导你如何构建一个真正以用户为中心的产品。&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div id="accordion" class="space-y-8 max-w-4xl mx-auto"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="accordion-item bg-white rounded-lg shadow-sm"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;button class="accordion-header w-full text-left p-6 flex justify-between items-center"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;span class="text-lg font-semibold"&gt;原则一：为“扫描”而设计 (Design for Scanning)&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;span class="accordion-icon text-xl font-thin"&gt;+&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="accordion-content"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div class="p-6 pt-0 text-gray-600"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;p class="mb-6"&gt;用户在页面上不是阅读，而是扫描。因此，设计时要利用视觉层次、简短段落、项目列表和醒目标题，让页面内容一目了然，方便用户快速获取信息。&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;div class="diagram-grid"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;div class="diagram-container"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;p class="text-red-600"&gt;❌ 密集文本，难以扫描&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;div class="diagram-example bad"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;!-- Dense, uniform text block to simulate unreadable text --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;div class="h-line full mb-2.5"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;div class="h-line full mb-2.5"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;div class="h-line full mb-2.5"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;div class="h-line full mb-2.5"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;div class="h-line full mb-2.5"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;div class="h-line full"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;div class="diagram-container"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;p class="text-green-600"&gt;✅ 清晰标题与列表，易于扫描&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;div class="diagram-example good"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;!-- Clear heading --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;div class="h-line bold full mb-4"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;!-- Short paragraph --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;div class="h-line w-4/5 mb-3"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;!-- Bullet points --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;div class="flex items-center mb-2.5"&gt;&lt;div class="bullet"&gt;&lt;/div&gt;&lt;div class="h-line w-3/4"&gt;&lt;/div&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;div class="flex items-center mb-2.5"&gt;&lt;div class="bullet"&gt;&lt;/div&gt;&lt;div class="h-line w-2/3"&gt;&lt;/div&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;!-- Another heading --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;div class="h-line bold w-1/2 mt-4 mb-3"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;!-- Another short paragraph --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;div class="h-line w-3/5"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="accordion-item bg-white rounded-lg shadow-sm"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;button class="accordion-header w-full text-left p-6 flex justify-between items-center"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;span class="text-lg font-semibold"&gt;原则二：建立明确的视觉层级 (Clear Visual Hierarchy)&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;span class="accordion-icon text-xl font-thin"&gt;+&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="accordion-content"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div class="p-6 pt-0 text-gray-600"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;p class="mb-6"&gt;页面上最重要的元素应该在视觉上最突出。相关的元素应该在视觉上组织在一起。通过大小、颜色、位置、对比度等手段引导用户的注意力，让他们一眼就能看到最关键的信息。&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;div class="diagram-grid"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;div class="diagram-container"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;p class="text-red-600"&gt;❌ 层级混乱，重点不明&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;div class="diagram-example bad flex-row flex-wrap justify-around items-center"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;div class="w-1/3 h-1/3 bg-gray-400 m-2"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;div class="w-1/4 h-1/4 bg-gray-400 m-2"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;div class="w-1/3 h-1/3 bg-gray-400 m-2"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;div class="w-1/4 h-1/4 bg-gray-400 m-2"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;div class="w-1/3 h-1/3 bg-gray-400 m-2"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;div class="diagram-container"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;p class="text-green-600"&gt;✅ 层级清晰，重点突出&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;div class="diagram-example good relative"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;div class="w-2/3 h-2/3 bg-amber-500 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center text-white font-bold"&gt;主要内容 (Main Content)&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;div class="w-1/4 h-1/4 bg-gray-300 absolute top-3 left-3"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;div class="w-1/4 h-1/4 bg-gray-300 absolute bottom-3 right-3"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="accordion-item bg-white rounded-lg shadow-sm"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;button class="accordion-header w-full text-left p-6 flex justify-between items-center"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;span class="text-lg font-semibold"&gt;原则三：有效利用约定俗成 (Leverage Conventions)&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;span class="accordion-icon text-xl font-thin"&gt;+&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="accordion-content"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div class="p-6 pt-0 text-gray-600"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;p class="mb-6"&gt;用户在使用Web和App时，会带着他们从其他产品中积累的经验和期望。例如，Logo通常在左上角，搜索框通常在顶部。遵循这些“约定俗成”（Conventions）的模式，可以大大减少用户的学习成本和思考时间。&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;div class="diagram-grid"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;div class="diagram-container"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;p class="text-red-600"&gt;❌ 违反约定，增加困惑&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;div class="diagram-example bad flex flex-col justify-center items-center p-3"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;!-- Highly unconventional placement --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;div class="flex justify-between w-full mb-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>&lt;span class="diagram-element icon-placeholder text-3xl"&gt;🛒&lt;/span&gt; &lt;!-- Cart on far left --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>&lt;span class="diagram-element icon-placeholder text-3xl"&gt;🔍&lt;/span&gt; &lt;!-- Search in middle --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>&lt;span class="diagram-element icon-placeholder text-3xl"&gt;🏠&lt;/span&gt; &lt;!-- Home on far right --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;p class="text-xs text-red-700 font-semibold"&gt;（位置混乱，难以识别）&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;div class="diagram-container"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;p class="text-green-600"&gt;✅ 遵循约定，直观易用&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;div class="diagram-example good flex flex-col justify-center items-center p-3"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;!-- Conventional placement --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;div class="flex justify-between w-full mb-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>&lt;span class="diagram-element icon-placeholder text-3xl"&gt;🏠&lt;/span&gt; &lt;!-- Home on left --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>&lt;span class="diagram-element icon-placeholder text-3xl"&gt;🔍&lt;/span&gt; &lt;!-- Search in middle --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>&lt;span class="diagram-element icon-placeholder text-3xl"&gt;🛒&lt;/span&gt; &lt;!-- Cart on right --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;p class="text-xs text-green-700 font-semibold"&gt;（标准布局，一目了然）&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="accordion-item bg-white rounded-lg shadow-sm"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;button class="accordion-header w-full text-left p-6 flex justify-between items-center"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;span class="text-lg font-semibold"&gt;原则四：让点击操作显而易见（可供性 - Affordance）&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;span class="accordion-icon text-xl font-thin"&gt;+&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="accordion-content"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div class="p-6 pt-0 text-gray-600"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;p class="mb-6"&gt;一个元素是否可点击、可交互，应该在视觉上清晰地传达出来。这被称为“可供性”（Affordance）。链接应该有下划线或不同颜色，按钮应该有明显的形状和阴影，让用户一眼就能识别出可交互元素，无需猜测。&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;div class="diagram-grid"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;div class="diagram-container"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;p class="text-red-600"&gt;❌ 缺乏可供性，难以点击&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;div class="diagram-example bad flex flex-col justify-center items-center"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;p class="mb-3"&gt;了解更多&lt;span class="text-gray-800 font-semibold"&gt;信息 (Info)&lt;/span&gt;。&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;p&gt;点击&lt;span class="text-gray-800 font-semibold"&gt;提交 (Submit)&lt;/span&gt;。&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;div class="diagram-container"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;p class="text-green-600"&gt;✅ 明确可供性，易于点击&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;div class="diagram-example good flex flex-col justify-center items-center"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;p class="mb-3"&gt;了解更多&lt;a href="#" class="link-text"&gt;信息 (Info)&lt;/a&gt;。&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;button class="button-style"&gt;提交 (Submit)&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="accordion-item bg-white rounded-lg shadow-sm"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;button class="accordion-header w-full text-left p-6 flex justify-between items-center"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;span class="text-lg font-semibold"&gt;原则五：保持页面简洁，减少噪音 (Eliminate Noise)&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;span class="accordion-icon text-xl font-thin"&gt;+&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="accordion-content"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div class="p-6 pt-0 text-gray-600"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;p class="mb-6"&gt;每个页面都充满了各种视觉元素，其中很多都是“噪音”（Noise，不必要的文字、图片、装饰等）。努力删除或弱化不重要的内容，让用户的注意力集中在核心任务上。一个干净、聚焦的界面能显著提升可用性。&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;div class="diagram-grid"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;div class="diagram-container"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;p class="text-red-600"&gt;❌ 噪音过多，分散注意力&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;div class="diagram-example bad relative"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;div class="w-full h-1/3 bg-gray-200 mb-3"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;div class="w-1/2 h-4 bg-gray-300 mb-2"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;div class="w-full h-2 bg-red-200 absolute top-3 right-3 px-1 text-xs text-red-700"&gt;广告 (Ad)&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;div class="w-1/4 h-3 bg-blue-200 absolute bottom-3 left-3 px-1 text-xs text-blue-700"&gt;弹窗 (Popup)&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;div class="w-3/4 h-4 bg-gray-300"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;div class="diagram-container"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;p class="text-green-600"&gt;✅ 简洁聚焦，提升效率&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;div class="diagram-example good"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;div class="w-full h-1/2 bg-amber-100 mb-3 flex items-center justify-center font-bold text-amber-800"&gt;核心内容区域 (Core Content)&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;div class="w-full h-4 bg-gray-300 mb-2"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;div class="w-3/4 h-4 bg-gray-300"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/section&gt;</p>
+<p class="p2"><span class="Apple-converted-space">        </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;section id="testing" class="pt-20 -mt-16 mb-32"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="section-content-block"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="text-center mb-12"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h2 class="section-title font-bold mb-4"&gt;可用性测试 (Usability Testing)&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="section-subtitle text-gray-500"&gt;如果你想让产品变得更好，测试是无可替代的。好消息是，测试可以非常简单、廉价且有效。&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="section-intro-text text-gray-700 max-w-3xl mx-auto mt-6 mb-12"&gt;可用性测试是发现产品中“别让我思考”问题的最有效方法。它能让你从真实用户的角度，发现那些你自己可能永远无法察觉的问题，这也被称为“知识的诅咒 (Curse of Knowledge)”。&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="bg-white p-8 rounded-xl shadow-sm mb-12"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h3 class="text-xl font-semibold text-center mb-6"&gt;测试的力量：少量用户即可发现大量问题&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="text-center text-gray-600 mb-8"&gt;研究表明，只需要邀请3-5名用户进行测试，就能发现大约85%的可用性问题。下图直观地展示了这一高效的回报率。&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="chart-container"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;canvas id="usabilityChart"&gt;&lt;/canvas&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="bg-white p-8 rounded-xl shadow-sm"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h3 class="text-xl font-semibold text-center mb-6"&gt;简单的可用性测试流程 (Simple Usability Testing Process - 5 Steps)&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="text-center text-gray-600 mb-8"&gt;可用性测试无需复杂，遵循以下简单步骤即可：&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="flex flex-col items-center space-y-6"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div class="diagram-box flex-shrink-0"&gt;1. 准备 (Prepare)&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div class="arrow"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div class="diagram-box flex-shrink-0"&gt;2. 招募 (Recruit)&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div class="arrow"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div class="diagram-box flex-shrink-0"&gt;3. 执行 (Execute)&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div class="diagram-box flex-shrink-0"&gt;5. 改进 (Improve)&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div class="arrow"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div class="diagram-box flex-shrink-0"&gt;4. 分析 (Analyze)&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;p class="text-sm text-gray-500 mt-6"&gt;（箭头表示流程方向）&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;ul class="list-disc list-inside text-gray-700 mt-10 space-y-3"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;li&gt;**准备 (Prepare)：** 明确测试目标，设计任务场景。&lt;/li&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;li&gt;**招募 (Recruit)：** 找到3-5名目标用户（不必是专家）。&lt;/li&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;li&gt;**执行 (Execute)：** 让用户完成任务，观察他们的行为，倾听他们的思考，不要引导或干预。&lt;/li&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;li&gt;**分析 (Analyze)：** 记录并总结发现的问题，特别是用户感到困惑或出错的地方。&lt;/li&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;li&gt;**改进 (Improve)：** 根据发现的问题，迭代优化你的设计。&lt;/li&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;li&gt;**关于“忙碌用户测试” (The Fat Man Test)：** 这是书中一个比喻，旨在强调设计应让最“不愿思考”的用户也能轻松使用。其核心是确保设计普适且直观。&lt;/li&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/ul&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;section id="mobile" class="pt-20 -mt-16 mb-32"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="section-content-block"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="text-center mb-12"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h2 class="section-title font-bold mb-4"&gt;移动端设计 (Mobile Usability)&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="section-subtitle text-gray-500"&gt;“别让我思考”的原则在移动端同样适用，甚至更为重要，因为移动设备的使用场景和物理限制带来了新的挑战。&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="section-intro-text text-gray-700 max-w-3xl mx-auto mt-6 mb-12"&gt;移动设备的小屏幕、触摸操作和碎片化使用场景，要求设计师更加注重内容的精简和交互的直观性。&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="flex flex-col md:flex-row items-center justify-center space-y-12 md:space-y-0 md:space-x-16"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="phone-outline flex flex-col p-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="w-full h-1/4 bg-amber-100 flex items-center justify-center text-xs font-bold text-amber-800 rounded-md mb-3"&gt;核心内容A (Core Content A)&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="w-full h-1/6 bg-gray-200 flex items-center justify-center text-xs text-gray-600 rounded-md mb-3"&gt;次要信息B (Secondary Info B)&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="touch-target w-28 h-12 bottom-6 left-1/2 -translate-x-1/2 text-sm"&gt;大按钮 (Large Button)&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="touch-target w-14 h-14 top-3 right-3 text-sm"&gt;☰&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="touch-target w-14 h-14 top-3 left-3 text-sm"&gt;🏠&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;ul class="space-y-4 text-gray-700 list-disc list-inside max-w-md"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;li&gt;&lt;strong class="font-semibold"&gt;屏幕更小 (Smaller Screens)：&lt;/strong&gt;必须做出取舍，只保留最重要的内容和功能。避免信息过载。&lt;/li&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;li&gt;&lt;strong class="font-semibold"&gt;触摸操作 (Touch Interaction)：&lt;/strong&gt;按钮和链接需要足够大（建议至少44x44像素），方便手指点击，避免误触。&lt;/li&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;li&gt;&lt;strong class="font-semibold"&gt;碎片化使用 (Fragmented Use)：&lt;/strong&gt;用户可能在任何地方、任何时候使用你的产品。设计需要支持快速、短时的交互，让用户能迅速完成任务。&lt;/li&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;li&gt;&lt;strong class="font-semibold"&gt;上下文更重要 (Context is Key)：&lt;/strong&gt;移动设备可以利用用户的位置、时间和方向等上下文信息，提供更智能、个性化的服务。&lt;/li&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;li&gt;&lt;strong class="font-semibold"&gt;减少输入 (Minimize Input)：&lt;/strong&gt;尽量减少用户在移动设备上的文字输入，提供选项、自动填充等便捷方式。&lt;/li&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/ul&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/main&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;footer class="text-center py-8 mt-16 border-t border-gray-200"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;p class="text-gray-500"&gt;基于 Steve Krug 的《点石成金》核心理念创建&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/footer&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>document.addEventListener('DOMContentLoaded', function() {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const sections = document.querySelectorAll('section');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const navLinks = document.querySelectorAll('.nav-link');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const mobileNav = document.getElementById('mobile-nav');</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>function updateActiveLink() {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>let currentActiveSectionId = 'home';<span class="Apple-converted-space"> </span></p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>for (let i = sections.length - 1; i &gt;= 0; i--) {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>const section = sections[i];</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>// Adjusted offset for sticky header and visual comfort</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>if (window.scrollY + 200 &gt;= section.offsetTop) {<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                        </span>currentActiveSectionId = section.id;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>break;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p2"><span class="Apple-converted-space">                </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>navLinks.forEach(link =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>link.classList.remove('active');</p>
+<p class="p1"><span class="Apple-converted-space">                </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>const activeLink = document.querySelector(`.nav-link[href="#${currentActiveSectionId}"]`);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (activeLink) {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>activeLink.classList.add('active');</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p2"><span class="Apple-converted-space">                </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>mobileNav.value = `#${currentActiveSectionId}`;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>window.addEventListener('scroll', updateActiveLink);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>updateActiveLink();</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>navLinks.forEach(link =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>link.addEventListener('click', function(event) {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>event.preventDefault();<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>const targetId = this.getAttribute('href');</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>document.querySelector(targetId).scrollIntoView({</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>behavior: 'smooth'</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>});</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>// Manually update active link immediately after click for better UX</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>navLinks.forEach(l =&gt; l.classList.remove('active'));</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>this.classList.add('active');</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>mobileNav.value = targetId;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>});</p>
+<p class="p1"><span class="Apple-converted-space">            </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>mobileNav.addEventListener('change', function() {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const targetId = this.value;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>document.querySelector(targetId).scrollIntoView({</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>behavior: 'smooth'</p>
+<p class="p1"><span class="Apple-converted-space">                </span>});</p>
+<p class="p1"><span class="Apple-converted-space">                </span>// Manually update active link immediately after selection</p>
+<p class="p1"><span class="Apple-converted-space">                </span>navLinks.forEach(l =&gt; l.classList.remove('active'));</p>
+<p class="p1"><span class="Apple-converted-space">                </span>document.querySelector(`.nav-link[href="${targetId}"]`).classList.add('active');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>const accordionItems = document.querySelectorAll('.accordion-item');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>accordionItems.forEach(item =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const header = item.querySelector('.accordion-header');</p>
+<p class="p1"><span class="Apple-converted-space">                </span>header.addEventListener('click', () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>const content = item.querySelector('.accordion-content');</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>const icon = item.querySelector('.accordion-icon');</p>
+<p class="p2"><span class="Apple-converted-space">                    </span></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>document.querySelectorAll('.accordion-content').forEach(c =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>if (c !== content &amp;&amp; c.style.maxHeight) {</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>c.style.maxHeight = null;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>c.closest('.accordion-item').querySelector('.accordion-icon').textContent = '+';</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>if (content.style.maxHeight) {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>content.style.maxHeight = null;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>icon.textContent = '+';</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>content.style.maxHeight = content.scrollHeight + 'px';</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>icon.textContent = '-';</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                </span>});</p>
+<p class="p1"><span class="Apple-converted-space">            </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>const ctx = document.getElementById('usabilityChart').getContext('2d');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const usabilityChart = new Chart(ctx, {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>type: 'bar',</p>
+<p class="p1"><span class="Apple-converted-space">                </span>data: {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>labels: ['1位用户', '2位用户', '3位用户', '4位用户', '5位用户', '8位用户', '15位用户'],</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>datasets: [{</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>label: '发现的可用性问题比例 (%)',</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>data: [30, 55, 85, 93, 95, 98, 100],</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>backgroundColor: 'rgba(217, 119, 6, 0.6)',</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>borderColor: 'rgba(217, 119, 6, 1)',</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>borderWidth: 1</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>}]</p>
+<p class="p1"><span class="Apple-converted-space">                </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                </span>options: {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>responsive: true,</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>maintainAspectRatio: false,</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>scales: {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>y: {</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>beginAtZero: true,</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>max: 100,</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>ticks: {</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>callback: function(value) {</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>return value + '%'</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>plugins: {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>legend: {</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>display: false</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>tooltip: {</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>callbacks: {</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>label: function(context) {</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>return `大约能发现 ${context.raw}% 的问题`;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>});</p>
+<p class="p1"><span class="Apple-converted-space">        </span>});</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/script&gt;</p>
+<p class="p1">&lt;/body&gt;</p>
+<p class="p1">&lt;/html&gt;</p>
+</body>
+</html>
