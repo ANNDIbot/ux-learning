@@ -40,14 +40,24 @@
         .accordion-content {
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.5s ease-in-out;
+            transition: max-height 0.5s ease-in-out; /* Only max-height transition */
         }
+        /* When an accordion item is active, its content should expand */
+        .accordion-item.active > .accordion-content {
+            max-height: 9999px; /* Ensures all content is visible when open */
+        }
+        /* Adjust padding for the direct content div within accordion-content */
+        .accordion-content > div { /* Target the div directly inside accordion-content */
+             /* Keep the padding defined in the HTML */
+        }
+
+
         .accordion-header {
             border-bottom: 1px solid #F3EFEA; /* Subtle border for accordion headers */
             padding: 2rem 1.75rem; /* Increased padding */
         }
-        .accordion-item:last-child .accordion-header {
-            border-bottom: none; /* No border for the last header */
+        .accordion-item:last-child > .accordion-header {
+            border-bottom: none; /* No border for the last header of a top-level accordion */
         }
         .chart-container {
             position: relative;
@@ -154,6 +164,28 @@
             color: #D97706;
             font-weight: bold;
         }
+        /* Adjusted touch target sizes for better visibility */
+        .touch-target.large-button {
+            width: 120px; /* Wider */
+            height: 50px; /* Taller */
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .touch-target.menu-icon {
+            width: 50px;
+            height: 50px;
+            top: 20px;
+            right: 20px;
+        }
+        .touch-target.home-icon {
+            width: 50px;
+            height: 50px;
+            top: 20px;
+            left: 20px;
+        }
+
+
         .diagram-grid {
             display: grid;
             grid-template-columns: 1fr;
@@ -237,6 +269,159 @@
             font-size: 2.2rem; /* Larger icon */
             color: #D97706;
         }
+        /* F-shape pattern specific styles */
+        .f-shape-diagram {
+            width: 100%;
+            max-width: 300px; /* Constrain width */
+            height: 140px; /* Adjusted height for better F-shape */
+            border: 1px solid #D1D5DB;
+            background-color: #FFFFFF;
+            border-radius: 8px;
+            position: relative;
+            padding: 15px; /* Increased padding */
+            overflow: hidden;
+            box-shadow: inset 0 0 5px rgba(0,0,0,0.05); /* subtle inner shadow */
+            margin-bottom: 10px; /* Spacing below F-shape */
+        }
+        .f-line {
+            background-color: #D97706; /* Amber color for scan path */
+            position: absolute;
+            opacity: 0.7; /* Slightly transparent */
+            border-radius: 2px; /* Slight roundness for lines */
+        }
+        .f-line-horizontal {
+            height: 8px;
+        }
+        .f-line-vertical {
+            width: 8px;
+        }
+        /* Specific F-line positions for better visual */
+        .f-line-top-h { top: 15px; left: 15px; width: calc(100% - 30px); }
+        .f-line-mid-h { top: 55px; left: 15px; width: calc(70% - 30px); }
+        .f-line-bottom-v { top: 15px; left: 15px; height: calc(100% - 30px); }
+
+        /* Goodwill Diagram adjustments */
+        .goodwill-diagram {
+            width: 100%;
+            height: 80px; /* Reduced height for compactness */
+            background-color: #F0F0F0; /* Lighter background */
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            display: flex; /* Use flex to align content horizontally */
+        }
+        .goodwill-segment {
+            flex: 1; /* Each segment takes equal space */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem; /* Smaller font for compactness */
+            font-weight: 600;
+            color: white; /* White text for contrast */
+            padding: 5px; /* Internal padding */
+            text-align: center;
+        }
+        .goodwill-segment.positive { background-color: #22C55E; } /* Green for positive */
+        .goodwill-segment.neutral { background-color: #6B7280; color: #FFFFFF; } /* Gray for neutral */
+        .goodwill-segment.negative { background-color: #EF4444; } /* Red for negative */
+        .goodwill-diagram-text {
+            text-align: center;
+            font-size: 0.85rem;
+            color: #6B7280;
+            margin-top: 5px;
+        }
+
+        /* Navigation and Form Diagram Adjustments */
+        .nav-diagram-example, .form-diagram-example, .search-diagram-example, .accessibility-diagram-example {
+            width: 100%; /* Ensure full width within container */
+            max-width: 300px; /* Limit max width for better proportion */
+            height: 220px; /* Consistent height for these examples, increased for better fit */
+            border: 1px solid #D1D5DB;
+            background-color: #FFFFFF;
+            border-radius: 8px;
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-size: 1rem;
+            color: #4B5563;
+        }
+        .nav-diagram-example.bad, .form-diagram-example.bad, .search-diagram-example.bad, .accessibility-diagram-example.bad { border-color: #EF4444; }
+        .nav-diagram-example.good, .form-diagram-example.good, .search-diagram-example.good, .accessibility-diagram-example.good { border-color: #22C55E; }
+        .nav-bar-example {
+            width: 90%;
+            height: 30px;
+            background-color: #D1D5DB;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            font-size: 0.85rem;
+            color: #374151;
+        }
+        .nav-link-example {
+            color: #3B82F6;
+            text-decoration: underline;
+        }
+        .logo-placeholder {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #D97706;
+        }
+        .form-field-bad {
+            width: 90%;
+            border: 1px solid #D1D5DB;
+            padding: 8px;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+        }
+        .form-field-good {
+            width: 90%;
+            border: 1px solid #22C55E;
+            padding: 8px;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+        }
+        .form-label {
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: #383838;
+            margin-bottom: 4px;
+            align-self: flex-start; /* Align labels to start */
+            margin-left: 5%; /* Match input alignment */
+        }
+        .form-group-fieldset {
+            border: 1px solid #22C55E;
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            width: 90%;
+        }
+        .form-legend {
+            font-size: 0.9rem;
+            font-weight: bold;
+            color: #22C55E;
+            padding: 0 5px;
+        }
+        .form-error-msg {
+            color: #EF4444;
+            font-size: 0.75rem;
+            margin-top: 4px;
+            align-self: flex-start;
+            margin-left: 5%;
+        }
+        .submit-button {
+            background-color: #D97706;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            margin-top: 10px;
+        }
+
 
         /* General section spacing */
         section {
@@ -291,6 +476,36 @@
         #home .home-text {
             font-size: 1.1rem; /* Larger text for home */
         }
+        
+        /* Nested Accordion Specific Styles */
+        .accordion-item .accordion-item { /* Styles for nested accordion items */
+            background-color: #F9FAFB; /* Lighter background for nested items */
+            border-left: 4px solid #F3EFEA; /* Visual cue for nesting */
+            margin-top: 1rem; /* Space between nested items */
+            margin-bottom: 1rem;
+        }
+        .accordion-item .accordion-item:last-child {
+            margin-bottom: 0;
+        }
+        .accordion-item .accordion-item .accordion-header {
+            padding: 1rem 1.5rem; /* Smaller padding for nested headers */
+            font-size: 1.05rem; /* Slightly smaller font for nested headers */
+            border-bottom: 1px solid #EEE; /* Lighter border for nested headers */
+        }
+        .accordion-item .accordion-item:last-child > .accordion-header {
+             border-bottom: none; /* No border for the last nested header */
+        }
+        .accordion-item .accordion-item .accordion-content {
+            padding: 1.5rem; /* Smaller padding for nested content */
+        }
+        .accordion-item > .accordion-content {
+            /* This rule is now managed by .accordion-item.active > .accordion-content to ensure correct padding */
+            /* padding-top: 0; */ 
+        }
+        .accordion-item > .accordion-content > .space-y-8 {
+            margin-top: 0; /* Remove top margin when accordion-content padding exists */
+        }
+
     </style>
 </head>
 <body class="antialiased">
@@ -423,6 +638,38 @@
                             </div>
                         </div>
                     </div>
+                    <!-- F-shaped pattern -->
+                    <div class="card bg-white p-8 rounded-xl shadow-sm text-center md:col-span-full">
+                        <div class="diagram-eye mb-6">🔍</div>
+                        <h3 class="text-xl font-semibold mb-4">F型阅读模式 (F-Shaped Pattern)</h3>
+                        <p class="text-gray-600 mb-6">用户在浏览网页时，目光往往会呈现出F型轨迹：先是水平扫过页面顶部，然后垂直向下，再在第二个兴趣点进行一次较短的水平扫描，最后继续垂直向下。这意味着重要的信息应该放在F型的路径上。</p>
+                        <div class="flex flex-col items-center mt-6">
+                            <p class="font-semibold text-sm mb-4">F型模式示意</p>
+                            <div class="f-shape-diagram relative bg-gray-100 rounded-md">
+                                <div class="f-line f-line-horizontal f-line-top-h"></div>
+                                <div class="f-line f-line-vertical f-line-bottom-v"></div>
+                                <div class="f-line f-line-horizontal f-line-mid-h"></div>
+                                <div class="text-xs text-gray-500 absolute top-2 left-2 w-full text-left px-4">内容顶部区域</div>
+                                <div class="text-xs text-gray-500 absolute top-1/2 left-2 w-full text-left px-4">中部信息</div>
+                                <div class="text-xs text-gray-500 absolute bottom-2 left-2 w-full text-left px-4">底部信息</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Goodwill -->
+                    <div class="card bg-white p-8 rounded-xl shadow-sm text-center md:col-span-full">
+                        <div class="diagram-check mb-6">😊</div>
+                        <h3 class="text-xl font-semibold mb-4">用户善意与耐心 (User Goodwill and Patience)</h3>
+                        <p class="text-gray-600 mb-6">用户在使用一个新网站或应用时，通常会带着一定的“善意”和耐心。如果你的产品表现良好，这种善意会积累，让他们更愿意容忍小问题。反之，如果一开始就遇到挫折，善意很快就会消耗殆iotics。</p>
+                        <div class="flex flex-col items-center mt-6">
+                            <p class="font-semibold text-sm mb-4">善意累积与消耗</p>
+                            <div class="goodwill-diagram">
+                                <div class="goodwill-segment positive">善意积累<br>(+Goodwill)</div>
+                                <div class="goodwill-segment neutral">中立区<br>(Neutral)</div>
+                                <div class="goodwill-segment negative">善意消耗<br>(-Goodwill)</div>
+                            </div>
+                            <p class="goodwill-diagram-text">好的体验累积善意，坏的体验消耗善意。</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -435,184 +682,672 @@
                     <p class="section-intro-text text-gray-700 max-w-3xl mx-auto mt-6 mb-12">这些原则是“别让我思考”理念的具体实践，它们将指导你如何构建一个真正以用户为中心的产品。</p>
                 </div>
                 <div id="accordion" class="space-y-8 max-w-4xl mx-auto">
+
+                    <!-- Section: 1. 通用设计原则 (General Design Principles) -->
                     <div class="accordion-item bg-white rounded-lg shadow-sm">
                         <button class="accordion-header w-full text-left p-6 flex justify-between items-center">
-                            <span class="text-lg font-semibold">原则一：为“扫描”而设计 (Design for Scanning)</span>
+                            <span class="text-lg font-semibold">1. 通用设计原则 (General Design Principles)</span>
                             <span class="accordion-icon text-xl font-thin">+</span>
                         </button>
                         <div class="accordion-content">
                             <div class="p-6 pt-0 text-gray-600">
-                                <p class="mb-6">用户在页面上不是阅读，而是扫描。因此，设计时要利用视觉层次、简短段落、项目列表和醒目标题，让页面内容一目了然，方便用户快速获取信息。</p>
-                                <div class="diagram-grid">
-                                    <div class="diagram-container">
-                                        <p class="text-red-600">❌ 密集文本，难以扫描</p>
-                                        <div class="diagram-example bad">
-                                            <!-- Dense, uniform text block to simulate unreadable text -->
-                                            <!-- Increased number of lines and adjusted spacing for denser look -->
-                                            <div class="h-line full mb-1"></div>
-                                            <div class="h-line full mb-1"></div>
-                                            <div class="h-line full mb-1"></div>
-                                            <div class="h-line full mb-1"></div>
-                                            <div class="h-line full mb-1"></div>
-                                            <div class="h-line full mb-1"></div>
-                                            <div class="h-line full mb-1"></div>
-                                            <div class="h-line full mb-1"></div>
-                                            <div class="h-line full mb-1"></div>
-                                            <div class="h-line full mb-1"></div>
-                                            <div class="h-line full mb-1"></div>
-                                            <div class="h-line full"></div>
-                                        </div>
-                                    </div>
-                                    <div class="diagram-container">
-                                        <p class="text-green-600">✅ 清晰标题与列表，易于扫描</p>
-                                        <div class="diagram-example good">
-                                            <!-- Clear heading -->
-                                            <div class="h-line bold full mb-4"></div>
-                                            <!-- Short paragraph -->
-                                            <div class="h-line w-4/5 mb-3"></div>
-                                            <!-- Bullet points -->
-                                            <div class="flex items-center mb-2.5"><div class="bullet"></div><div class="h-line w-3/4"></div></div>
-                                            <div class="flex items-center mb-2.5"><div class="bullet"></div><div class="h-line w-2/3"></div></div>
-                                            <!-- Another heading -->
-                                            <div class="h-line bold w-1/2 mt-4 mb-3"></div>
-                                            <!-- Another short paragraph -->
-                                            <div class="h-line w-3/5"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="accordion-item bg-white rounded-lg shadow-sm">
-                        <button class="accordion-header w-full text-left p-6 flex justify-between items-center">
-                            <span class="text-lg font-semibold">原则二：建立明确的视觉层级 (Clear Visual Hierarchy)</span>
-                            <span class="accordion-icon text-xl font-thin">+</span>
-                        </button>
-                        <div class="accordion-content">
-                            <div class="p-6 pt-0 text-gray-600">
-                                <p class="mb-6">页面上最重要的元素应该在视觉上最突出。相关的元素应该在视觉上组织在一起。通过大小、颜色、位置、对比度等手段引导用户的注意力，让他们一眼就能看到最关键的信息。</p>
-                                <div class="diagram-grid">
-                                    <div class="diagram-container">
-                                        <p class="text-red-600">❌ 层级混乱，重点不明</p>
-                                        <div class="diagram-example bad flex-row flex-wrap justify-around items-center">
-                                            <div class="w-1/3 h-1/3 bg-gray-400 m-2"></div>
-                                            <div class="w-1/4 h-1/4 bg-gray-400 m-2"></div>
-                                            <div class="w-1/3 h-1/3 bg-gray-400 m-2"></div>
-                                            <div class="w-1/4 h-1/4 bg-gray-400 m-2"></div>
-                                            <div class="w-1/3 h-1/3 bg-gray-400 m-2"></div>
-                                        </div>
-                                    </div>
-                                    <div class="diagram-container">
-                                        <p class="text-green-600">✅ 层级清晰，重点突出</p>
-                                        <div class="diagram-example good relative">
-                                            <div class="w-2/3 h-2/3 bg-amber-500 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center text-white font-bold">主要内容 (Main Content)</div>
-                                            <div class="w-1/4 h-1/4 bg-gray-300 absolute top-3 left-3"></div>
-                                            <div class="w-1/4 h-1/4 bg-gray-300 absolute bottom-3 right-3"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="accordion-item bg-white rounded-lg shadow-sm">
-                        <button class="accordion-header w-full text-left p-6 flex justify-between items-center">
-                            <span class="text-lg font-semibold">原则三：有效利用约定俗成 (Leverage Conventions)</span>
-                            <span class="accordion-icon text-xl font-thin">+</span>
-                        </button>
-                        <div class="accordion-content">
-                            <div class="p-6 pt-0 text-gray-600">
-                                <p class="mb-6">用户在使用Web和App时，会带着他们从其他产品中积累的经验和期望。例如，Logo通常在左上角，搜索框通常在顶部。遵循这些“约定俗成”（Conventions）的模式，可以大大减少用户的学习成本和思考时间。</p>
-                                <div class="diagram-grid">
-                                    <div class="diagram-container">
-                                        <p class="text-red-600">❌ 违反约定，增加困惑</p>
-                                        <div class="diagram-example bad flex flex-col justify-center items-center p-3">
-                                            <!-- Highly unconventional placement -->
-                                            <div class="flex justify-between w-full mb-4">
-                                                <span class="diagram-element icon-placeholder text-3xl">🛒</span> <!-- Cart on far left -->
-                                                <span class="diagram-element icon-placeholder text-3xl">🔍</span> <!-- Search in middle -->
-                                                <span class="diagram-element icon-placeholder text-3xl">🏠</span> <!-- Home on far right -->
+                                <p class="mb-6">这些原则是关于如何设计出让用户无需思考就能理解和使用的界面的基本指导，适用于Web和移动端设计的各个方面。</p>
+                                <div class="space-y-4 mt-6"> <!-- Added space for inner accordions -->
+
+                                    <!-- Principle 1.1 -->
+                                    <div class="accordion-item bg-gray-50 rounded-lg shadow-sm">
+                                        <button class="accordion-header w-full text-left p-4 flex justify-between items-center text-base font-semibold">
+                                            <span>原则 1.1：为“扫描”而设计 (Design for Scanning)</span>
+                                            <span class="accordion-icon text-lg font-thin">+</span>
+                                        </button>
+                                        <div class="accordion-content">
+                                            <div class="p-4 pt-0 text-gray-600">
+                                                <p class="mb-4">用户在页面上不是阅读，而是扫描。因此，设计时要利用视觉层次、简短段落、项目列表和醒目标题，让页面内容一目了然，方便用户快速获取信息。</p>
+                                                <div class="diagram-grid">
+                                                    <div class="diagram-container">
+                                                        <p class="text-red-600">❌ 密集文本，难以扫描</p>
+                                                        <div class="diagram-example bad">
+                                                            <div class="h-line full mb-1"></div>
+                                                            <div class="h-line full mb-1"></div>
+                                                            <div class="h-line full mb-1"></div>
+                                                            <div class="h-line full mb-1"></div>
+                                                            <div class="h-line full mb-1"></div>
+                                                            <div class="h-line full mb-1"></div>
+                                                            <div class="h-line full mb-1"></div>
+                                                            <div class="h-line full mb-1"></div>
+                                                            <div class="h-line full mb-1"></div>
+                                                            <div class="h-line full mb-1"></div>
+                                                            <div class="h-line full mb-1"></div>
+                                                            <div class="h-line full"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="diagram-container">
+                                                        <p class="text-green-600">✅ 清晰标题与列表，易于扫描</p>
+                                                        <div class="diagram-example good">
+                                                            <div class="h-line bold full mb-4"></div>
+                                                            <div class="h-line w-4/5 mb-3"></div>
+                                                            <div class="flex items-center mb-2.5"><div class="bullet"></div><div class="h-line w-3/4"></div></div>
+                                                            <div class="flex items-center mb-2.5"><div class="bullet"></div><div class="h-line w-2/3"></div></div>
+                                                            <div class="h-line bold w-1/2 mt-4 mb-3"></div>
+                                                            <div class="h-line w-3/5"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <p class="text-xs text-red-700 font-semibold">（位置混乱，难以识别）</p>
                                         </div>
                                     </div>
-                                    <div class="diagram-container">
-                                        <p class="text-green-600">✅ 遵循约定，直观易用</p>
-                                        <div class="diagram-example good flex flex-col justify-center items-center p-3">
-                                            <!-- Conventional placement -->
-                                            <div class="flex justify-between w-full mb-4">
-                                                <span class="diagram-element icon-placeholder text-3xl">🏠</span> <!-- Home on left -->
-                                                <span class="diagram-element icon-placeholder text-3xl">🔍</span> <!-- Search in middle -->
-                                                <span class="diagram-element icon-placeholder text-3xl">🛒</span> <!-- Cart on right -->
+
+                                    <!-- Principle 1.2 -->
+                                    <div class="accordion-item bg-gray-50 rounded-lg shadow-sm">
+                                        <button class="accordion-header w-full text-left p-4 flex justify-between items-center text-base font-semibold">
+                                            <span>原则 1.2：建立明确的视觉层级 (Clear Visual Hierarchy)</span>
+                                            <span class="accordion-icon text-lg font-thin">+</span>
+                                        </button>
+                                        <div class="accordion-content">
+                                            <div class="p-4 pt-0 text-gray-600">
+                                                <p class="mb-4">页面上最重要的元素应该在视觉上最突出。相关的元素应该在视觉上组织在一起。通过大小、颜色、位置、对比度等手段引导用户的注意力，让他们一眼就能看到最关键的信息。</p>
+                                                <div class="diagram-grid">
+                                                    <div class="diagram-container">
+                                                        <p class="text-red-600">❌ 层级混乱，重点不明</p>
+                                                        <div class="diagram-example bad flex-row flex-wrap justify-around items-center">
+                                                            <div class="w-1/3 h-1/3 bg-gray-400 m-2"></div>
+                                                            <div class="w-1/4 h-1/4 bg-gray-400 m-2"></div>
+                                                            <div class="w-1/3 h-1/3 bg-gray-400 m-2"></div>
+                                                            <div class="w-1/4 h-1/4 bg-gray-400 m-2"></div>
+                                                            <div class="w-1/3 h-1/3 bg-gray-400 m-2"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="diagram-container">
+                                                        <p class="text-green-600">✅ 层级清晰，重点突出</p>
+                                                        <div class="diagram-example good relative">
+                                                            <div class="w-2/3 h-2/3 bg-amber-500 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center text-white font-bold">主要内容 (Main Content)</div>
+                                                            <div class="w-1/4 h-1/4 bg-gray-300 absolute top-3 left-3"></div>
+                                                            <div class="w-1/4 h-1/4 bg-gray-300 absolute bottom-3 right-3"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <p class="text-xs text-green-700 font-semibold">（标准布局，一目了然）</p>
                                         </div>
                                     </div>
+
+                                    <!-- Principle 1.3 -->
+                                    <div class="accordion-item bg-gray-50 rounded-lg shadow-sm">
+                                        <button class="accordion-header w-full text-left p-4 flex justify-between items-center text-base font-semibold">
+                                            <span>原则 1.3：有效利用约定俗成 (Leverage Conventions)</span>
+                                            <span class="accordion-icon text-lg font-thin">+</span>
+                                        </button>
+                                        <div class="accordion-content">
+                                            <div class="p-4 pt-0 text-gray-600">
+                                                <p class="mb-4">用户在使用Web和App时，会带着他们从其他产品中积累的经验和期望。例如，Logo通常在左上角，搜索框通常在顶部。遵循这些“约定俗成”（Conventions）的模式，可以大大减少用户的学习成本和思考时间。</p>
+                                                <div class="diagram-grid">
+                                                    <div class="diagram-container">
+                                                        <p class="text-red-600">❌ 违反约定，增加困惑</p>
+                                                        <div class="diagram-example bad flex flex-col justify-center items-center p-3">
+                                                            <div class="flex justify-between w-full mb-4">
+                                                                <span class="diagram-element icon-placeholder text-3xl">🛒</span>
+                                                                <span class="diagram-element icon-placeholder text-3xl">🔍</span>
+                                                                <span class="diagram-element icon-placeholder text-3xl">🏠</span>
+                                                            </div>
+                                                            <p class="text-xs text-red-700 font-semibold">（位置混乱，难以识别）</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="diagram-container">
+                                                        <p class="text-green-600">✅ 遵循约定，直观易用</p>
+                                                        <div class="diagram-example good flex flex-col justify-center items-center p-3">
+                                                            <div class="flex justify-between w-full mb-4">
+                                                                <span class="diagram-element icon-placeholder text-3xl">🏠</span>
+                                                                <span class="diagram-element icon-placeholder text-3xl">🔍</span>
+                                                                <span class="diagram-element icon-placeholder text-3xl">🛒</span>
+                                                            </div>
+                                                            <p class="text-xs text-green-700 font-semibold">（标准布局，一目了然）</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Principle 1.4 -->
+                                    <div class="accordion-item bg-gray-50 rounded-lg shadow-sm">
+                                        <button class="accordion-header w-full text-left p-4 flex justify-between items-center text-base font-semibold">
+                                            <span>原则 1.4：让点击操作显而易见（可供性 - Affordance）</span>
+                                            <span class="accordion-icon text-lg font-thin">+</span>
+                                        </button>
+                                        <div class="accordion-content">
+                                            <div class="p-4 pt-0 text-gray-600">
+                                                <p class="mb-4">一个元素是否可点击、可交互，应该在视觉上清晰地传达出来。这被称为“可供性”（Affordance）。链接应该有下划线或不同颜色，按钮应该有明显的形状和阴影，让用户一眼就能识别出可交互元素，无需猜测。</p>
+                                                <div class="diagram-grid">
+                                                    <div class="diagram-container">
+                                                        <p class="text-red-600">❌ 缺乏可供性，难以点击</p>
+                                                        <div class="diagram-example bad flex flex-col justify-center items-center">
+                                                            <p class="mb-3">了解更多<span class="text-gray-800 font-semibold">信息 (Info)</span>。</p>
+                                                            <p>点击<span class="text-gray-800 font-semibold">提交 (Submit)</span>。</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="diagram-container">
+                                                        <p class="text-green-600">✅ 明确可供性，易于点击</p>
+                                                        <div class="diagram-example good flex flex-col justify-center items-center">
+                                                            <p class="mb-3">了解更多<a href="#" class="link-text">信息 (Info)</a>。</p>
+                                                            <button class="button-style">提交 (Submit)</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Principle 1.5 -->
+                                    <div class="accordion-item bg-gray-50 rounded-lg shadow-sm">
+                                        <button class="accordion-header w-full text-left p-4 flex justify-between items-center text-base font-semibold">
+                                            <span>原则 1.5：保持页面简洁，减少噪音 (Eliminate Noise)</span>
+                                            <span class="accordion-icon text-lg font-thin">+</span>
+                                        </button>
+                                        <div class="accordion-content">
+                                            <div class="p-4 pt-0 text-gray-600">
+                                                <p class="mb-4">每个页面都充满了各种视觉元素，其中很多都是“噪音”（Noise，不必要的文字、图片、装饰等）。努力删除或弱化不重要的内容，让用户的注意力集中在核心任务上。一个干净、聚焦的界面能显著提升可用性。</p>
+                                                <div class="diagram-grid">
+                                                    <div class="diagram-container">
+                                                        <p class="text-red-600">❌ 噪音过多，分散注意力</p>
+                                                        <div class="diagram-example bad relative">
+                                                            <div class="w-full h-1/3 bg-gray-200 mb-3"></div>
+                                                            <div class="w-1/2 h-4 bg-gray-300 mb-2"></div>
+                                                            <div class="w-full h-2 bg-red-200 absolute top-3 right-3 px-1 text-xs text-red-700">广告 (Ad)</div>
+                                                            <div class="w-1/4 h-3 bg-blue-200 absolute bottom-3 left-3 px-1 text-xs text-blue-700">弹窗 (Popup)</div>
+                                                            <div class="w-3/4 h-4 bg-gray-300"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="diagram-container">
+                                                        <p class="text-green-600">✅ 简洁聚焦，提升效率</p>
+                                                        <div class="diagram-example good">
+                                                            <div class="w-full h-1/2 bg-amber-100 mb-3 flex items-center justify-center font-bold text-amber-800">核心内容区域 (Core Content)</div>
+                                                            <div class="w-full h-4 bg-gray-300 mb-2"></div>
+                                                            <div class="w-3/4 h-4 bg-gray-300"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Principle 1.6 -->
+                                    <div class="accordion-item bg-gray-50 rounded-lg shadow-sm">
+                                        <button class="accordion-header w-full text-left p-4 flex justify-between items-center text-base font-semibold">
+                                            <span>原则 1.6：持续性与一致性 (Consistency and Continuity)</span>
+                                            <span class="accordion-icon text-lg font-thin">+</span>
+                                        </button>
+                                        <div class="accordion-content">
+                                            <div class="p-4 pt-0 text-gray-600">
+                                                <p class="mb-4">用户在网站和应用之间建立心理模型。一致的导航、布局、术语和交互模式能大大降低用户的学习成本和思考负担。不一致性是导致困惑和错误的主要原因。</p>
+                                                <div class="diagram-grid">
+                                                    <div class="diagram-container">
+                                                        <p class="text-red-600">❌ 不一致性：样式多变，导航混乱</p>
+                                                        <div class="diagram-example bad flex flex-col justify-between items-center p-3">
+                                                            <div class="flex justify-between w-full mb-4">
+                                                                <button class="px-3 py-2 rounded-md bg-blue-500 text-white text-sm">按钮A</button>
+                                                                <button class="px-4 py-1 border border-gray-500 text-gray-700 text-xs">按钮B</button>
+                                                            </div>
+                                                            <div class="flex flex-col w-full items-start mb-2">
+                                                                <a href="#" class="text-blue-600 text-sm mb-1">首页</a>
+                                                                <a href="#" class="text-green-600 font-bold text-base mb-1">产品</a>
+                                                                <a href="#" class="text-purple-600 text-sm">关于我们</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="diagram-container">
+                                                        <p class="text-green-600">✅ 持续性与一致性：统一风格，固定布局</p>
+                                                        <div class="diagram-example good flex flex-col justify-between items-center p-3">
+                                                            <div class="flex justify-between w-full mb-4">
+                                                                <button class="px-4 py-2 rounded-lg bg-amber-500 text-white text-sm shadow">按钮A</button>
+                                                                <button class="px-4 py-2 rounded-lg bg-amber-500 text-white text-sm shadow">按钮B</button>
+                                                            </div>
+                                                            <div class="flex flex-col w-full items-start mb-2">
+                                                                <a href="#" class="text-blue-700 hover:underline text-sm mb-1">首页</a>
+                                                                <a href="#" class="text-blue-700 hover:underline text-sm mb-1">产品</a>
+                                                                <a href="#" class="text-blue-700 hover:underline text-sm">关于我们</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Principle 1.7 -->
+                                    <div class="accordion-item bg-gray-50 rounded-lg shadow-sm">
+                                        <button class="accordion-header w-full text-left p-4 flex justify-between items-center text-base font-semibold">
+                                            <span>原则 1.7：减少认知负荷 (Reduce Cognitive Load)</span>
+                                            <span class="accordion-icon text-lg font-thin">+</span>
+                                        </button>
+                                        <div class="accordion-content">
+                                            <div class="p-4 pt-0 text-gray-600">
+                                                <p class="mb-4">不要让用户记忆过多信息，或在脑中进行复杂的计算。尽可能提供上下文信息，利用“识别”而非“回忆”。例如，提供下拉菜单而非要求输入日期格式。</p>
+                                                <div class="diagram-grid">
+                                                    <div class="diagram-container">
+                                                        <p class="text-red-600">❌ 增加负荷：要求回忆，手动输入</p>
+                                                        <div class="diagram-example bad flex flex-col justify-center items-center">
+                                                            <label for="date_bad" class="text-sm font-medium mb-1">请输入日期 (YYYY-MM-DD):</label>
+                                                            <input type="text" id="date_bad" placeholder="例如: 2023-01-15" class="border border-gray-400 p-2 rounded-md w-3/4 text-sm">
+                                                            <label for="product_id" class="text-sm font-medium mt-4 mb-1">请输入上次购买的产品ID:</label>
+                                                            <input type="text" id="product_id" class="border border-gray-400 p-2 rounded-md w-3/4 text-sm">
+                                                        </div>
+                                                    </div>
+                                                    <div class="diagram-container">
+                                                        <p class="text-green-600">✅ 减少负荷：提供选项，利用识别</p>
+                                                        <div class="diagram-example good flex flex-col justify-center items-center">
+                                                            <label for="date_good" class="text-sm font-medium mb-1">选择日期:</label>
+                                                            <input type="date" id="date_good" class="border border-green-500 p-2 rounded-md w-3/4 text-sm">
+                                                            <label for="last_purchase" class="text-sm font-medium mt-4 mb-1">上次购买产品:</label>
+                                                            <select id="last_purchase" class="border border-green-500 p-2 rounded-md w-3/4 text-sm">
+                                                                <option>产品 A (ID: 123)</option>
+                                                                <option>产品 B (ID: 456)</option>
+                                                                <option>产品 C (ID: 789)</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Principle 1.8 -->
+                                    <div class="accordion-item bg-gray-50 rounded-lg shadow-sm">
+                                        <button class="accordion-header w-full text-left p-4 flex justify-between items-center text-base font-semibold">
+                                            <span>原则 1.8：不要无谓地使用大字体 (Don't Use Big Fonts for No Reason)</span>
+                                            <span class="accordion-icon text-lg font-thin">+</span>
+                                        </button>
+                                        <div class="accordion-content">
+                                            <div class="p-4 pt-0 text-gray-600">
+                                                <p class="mb-4">大字体通常用来强调非常重要的信息，但如果过度使用，会导致页面信息过载，反而让用户难以区分重点，增加扫描难度。要合理利用字体大小，服务于信息层级，而不是仅仅为了“好看”。</p>
+                                                <div class="diagram-grid">
+                                                    <div class="diagram-container">
+                                                        <p class="text-red-600">❌ 滥用大字体：重点淹没</p>
+                                                        <div class="diagram-example bad flex flex-col justify-center items-center p-3">
+                                                            <h1 class="text-2xl font-bold mb-2">重要标题 (Important Title)</h1>
+                                                            <p class="text-xl mb-1">这是主要内容 (Main Content)</p>
+                                                            <p class="text-lg mb-1">次要信息也很大 (Secondary Info is Big)</p>
+                                                            <p class="text-xl text-red-600 font-bold">所有内容都很大 (Everything is Big)</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="diagram-container">
+                                                        <p class="text-green-600">✅ 合理使用字体：突出重点</p>
+                                                        <div class="diagram-example good flex flex-col justify-center items-center p-3">
+                                                            <h1 class="text-2xl font-bold mb-2 text-amber-700">重要标题 (Important Title)</h1>
+                                                            <p class="text-base mb-1">这是主要内容 (Main Content)</p>
+                                                            <p class="text-sm text-gray-600">次要信息 (Secondary Info)</p>
+                                                            <p class="text-xs text-gray-500 mt-2">脚注 (Footnote)</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
                     </div>
+
+                    <!-- Section: 2. 特定区域/对象设计原则 (Specific Area/Object Design Principles) -->
                     <div class="accordion-item bg-white rounded-lg shadow-sm">
                         <button class="accordion-header w-full text-left p-6 flex justify-between items-center">
-                            <span class="text-lg font-semibold">原则四：让点击操作显而易见（可供性 - Affordance）</span>
+                            <span class="text-lg font-semibold">2. 特定区域/对象设计原则 (Specific Area/Object Design Principles)</span>
                             <span class="accordion-icon text-xl font-thin">+</span>
                         </button>
                         <div class="accordion-content">
                             <div class="p-6 pt-0 text-gray-600">
-                                <p class="mb-6">一个元素是否可点击、可交互，应该在视觉上清晰地传达出来。这被称为“可供性”（Affordance）。链接应该有下划线或不同颜色，按钮应该有明显的形状和阴影，让用户一眼就能识别出可交互元素，无需猜测。</p>
-                                <div class="diagram-grid">
-                                    <div class="diagram-container">
-                                        <p class="text-red-600">❌ 缺乏可供性，难以点击</p>
-                                        <div class="diagram-example bad flex flex-col justify-center items-center">
-                                            <p class="mb-3">了解更多<span class="text-gray-800 font-semibold">信息 (Info)</span>。</p>
-                                            <p>点击<span class="text-gray-800 font-semibold">提交 (Submit)</span>。</p>
+                                <p class="mb-6">这些原则聚焦于特定界面区域或UI对象的设计，提供了更具体和深入的可用性指导。</p>
+                                <div class="space-y-4 mt-6"> <!-- Added space for inner accordions -->
+
+                                    <!-- Principle 2.1: Home Page Design -->
+                                    <div class="accordion-item bg-gray-50 rounded-lg shadow-sm">
+                                        <button class="accordion-header w-full text-left p-4 flex justify-between items-center text-base font-semibold">
+                                            <span>原则 2.1：主页设计 (Home Page Design)</span>
+                                            <span class="accordion-icon text-lg font-thin">+</span>
+                                        </button>
+                                        <div class="accordion-content">
+                                            <div class="p-4 pt-0 text-gray-600">
+                                                <p class="mb-4">主页应该承担起重要的使命，它必须在用户看到的第一眼就回答以下问题：</p>
+                                                <ul class="list-disc list-inside text-gray-700 ml-4 mb-4">
+                                                    <li><strong>这是什么网站？(What is this?)</strong></li>
+                                                    <li><strong>我在这里可以做什么？(What can I do here?)</strong></li>
+                                                    <li><strong>这里有什么人/组织？(Who do they have here?)</strong></li>
+                                                    <li><strong>我为什么要选择这里而不是别处？(Why should I be here and not somewhere else?)</strong></li>
+                                                </ul>
+                                                <p class="mb-4">主页不是一个必须展示所有内容的页面，而是引导用户快速进入他们所需区域的枢纽。同时，主页也是用户迷失时可以返回的安全港，确保主页链接在任何页面都易于找到，且点击后能清晰返回。</p>
+                                                <div class="diagram-grid">
+                                                    <div class="diagram-container">
+                                                        <p class="text-red-600">❌ 杂乱无章的主页：信息过载，目标不明</p>
+                                                        <div class="diagram-example bad flex flex-col justify-center items-center p-3">
+                                                            <div class="w-full h-1/4 bg-gray-200 mb-2"></div>
+                                                            <div class="w-full h-1/6 bg-blue-200 mb-2 text-xs text-blue-800">新闻轮播 (News Carousel)</div>
+                                                            <div class="flex justify-around w-full mb-2">
+                                                                <div class="w-1/4 h-1/6 bg-yellow-200 text-xs text-yellow-800">广告1 (Ad 1)</div>
+                                                                <div class="w-1/4 h-1/6 bg-red-200 text-xs text-red-800">广告2 (Ad 2)</div>
+                                                            </div>
+                                                            <div class="w-full h-1/6 bg-green-200 text-xs text-green-800">最新产品列表 (Latest Products)</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="diagram-container">
+                                                        <p class="text-green-600">✅ 清晰有力的主页：聚焦核心，提供导航</p>
+                                                        <div class="diagram-example good flex flex-col justify-center items-center p-3">
+                                                            <div class="w-full h-1/3 bg-amber-100 flex items-center justify-center text-sm font-bold text-amber-800 mb-4">主页标语 (Main Slogan)</div>
+                                                            <div class="flex justify-around w-full">
+                                                                <button class="px-4 py-2 rounded-lg bg-blue-500 text-white text-sm">产品 (Products)</button>
+                                                                <button class="px-4 py-2 rounded-lg bg-green-500 text-white text-sm">服务 (Services)</button>
+                                                                <button class="px-4 py-2 rounded-lg bg-purple-500 text-white text-sm">关于 (About)</button>
+                                                            </div>
+                                                            <div class="w-full text-center mt-4 text-xs text-gray-600">快速链接 (Quick Links)</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="diagram-container">
-                                        <p class="text-green-600">✅ 明确可供性，易于点击</p>
-                                        <div class="diagram-example good flex flex-col justify-center items-center">
-                                            <p class="mb-3">了解更多<a href="#" class="link-text">信息 (Info)</a>。</p>
-                                            <button class="button-style">提交 (Submit)</button>
+
+                                    <!-- Principle 2.2: Navigation Design -->
+                                    <div class="accordion-item bg-gray-50 rounded-lg shadow-sm">
+                                        <button class="accordion-header w-full text-left p-4 flex justify-between items-center text-base font-semibold">
+                                            <span>原则 2.2：导航设计 (Navigation Design)</span>
+                                            <span class="accordion-icon text-lg font-thin">+</span>
+                                        </button>
+                                        <div class="accordion-content">
+                                            <div class="p-4 pt-0 text-gray-600">
+                                                <p class="mb-4">良好的导航是用户不“思考”的关键。它帮助用户了解“我现在在哪里”、“我能去哪里”、“我如何回到这里”。设计直观的导航系统，是提升用户满意度和效率的核心。</p>
+                                                <div class="space-y-6 mt-6">
+                                                    <h5 class="text-sm font-semibold text-gray-700">要点 2.2.1：持久导航 (Persistent Navigation)</h5>
+                                                    <p class="mb-4">全局导航或顶部导航应在所有页面上可见且位置一致，如同指南针，方便用户访问主要分类或核心功能。</p>
+                                                    <div class="diagram-grid">
+                                                        <div class="diagram-container">
+                                                            <p class="text-red-600">❌ 导航消失：用户迷失</p>
+                                                            <div class="nav-diagram-example bad flex flex-col justify-between items-center p-3">
+                                                                <div class="w-full h-8 bg-gray-300 flex items-center justify-center text-sm text-gray-700 mb-8">页面内容 (Page Content)</div>
+                                                                <p class="text-red-700 font-semibold text-center text-sm">（导航已消失）</p>
+                                                                <div class="w-full h-8 bg-gray-300 flex items-center justify-center text-sm text-gray-700 mt-auto">更多内容 (More Content)</div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="diagram-container">
+                                                            <p class="text-green-600">✅ 持久导航：始终可见，指引明确</p>
+                                                            <div class="nav-diagram-example good flex flex-col justify-between items-center p-3">
+                                                                <div class="w-full h-8 bg-blue-100 flex items-center justify-around text-sm font-semibold text-blue-700 rounded-md">
+                                                                    <span>主页</span><span>产品</span><span>服务</span>
+                                                                </div>
+                                                                <div class="w-full h-8 bg-gray-300 flex items-center justify-center text-sm text-gray-700 mt-4">页面内容 (Page Content)</div>
+                                                                <div class="w-full h-8 bg-gray-300 flex items-center justify-center text-sm text-gray-700 mt-auto">更多内容 (More Content)</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <h5 class="text-sm font-semibold text-gray-700 mt-8 mb-4">要点 2.2.2：面包屑导航 (Breadcrumbs)</h5>
+                                                    <p class="mb-4">面包屑导航显示了用户当前页面在网站层级结构中的位置，提供了一种回溯路径，方便用户向上导航。</p>
+                                                    <div class="diagram-grid">
+                                                        <div class="diagram-container">
+                                                            <p class="text-red-600">❌ 缺少面包屑：用户不知身在何处</p>
+                                                            <div class="nav-diagram-example bad flex flex-col justify-center items-start p-3">
+                                                                <h3 class="text-lg font-bold mb-2">当前页面标题 (Current Page Title)</h3>
+                                                                <p class="text-sm text-gray-600">这是关于某个特定产品的详细信息...</p>
+                                                                <p class="text-red-700 text-xs mt-auto">（无路径信息）</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="diagram-container">
+                                                            <p class="text-green-600">✅ 清晰面包屑：路径一目了然</p>
+                                                            <div class="nav-diagram-example good flex flex-col justify-center items-start p-3">
+                                                                <p class="text-xs text-blue-700 mb-2">首页 &gt; 产品 &gt; 电子产品 &gt; 手机 (Home &gt; Products &gt; Electronics &gt; Phones)</p>
+                                                                <h3 class="text-lg font-bold">最新款智能手机 (Latest Smartphone)</h3>
+                                                                <p class="text-sm text-gray-600">这是关于最新款智能手机的详细信息...</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
+
+                                    <!-- Principle 2.3: Form Design -->
+                                    <div class="accordion-item bg-gray-50 rounded-lg shadow-sm">
+                                        <button class="accordion-header w-full text-left p-4 flex justify-between items-center text-base font-semibold">
+                                            <span>原则 2.3：表单设计 (Form Design)</span>
+                                            <span class="accordion-icon text-lg font-thin">+</span>
+                                        </button>
+                                        <div class="accordion-content">
+                                            <div class="p-4 pt-0 text-gray-600">
+                                                <p class="mb-4">表单是用户与网站或应用进行关键交互的桥梁。糟糕的表单设计会是用户放弃任务的主要原因。设计易于理解和填写的表单，可以显著提高用户完成任务的成功率。</p>
+                                                <div class="space-y-6 mt-6">
+                                                    <h5 class="text-sm font-semibold text-gray-700">要点 2.3.1：清晰的标签 (Clear Labels)</h5>
+                                                    <p class="mb-4">每个表单字段都应该有清晰、可见的标签。标签是用户理解他们需要输入什么信息的核心。避免仅使用占位符作为标签，因为它们在用户输入后就会消失。</p>
+                                                    <div class="diagram-grid">
+                                                        <div class="diagram-container">
+                                                            <p class="text-red-600">❌ 标签缺失或模糊：猜测与困惑</p>
+                                                            <div class="form-diagram-example bad flex flex-col justify-center items-center p-3">
+                                                                <input type="text" placeholder="您的姓名" class="form-field-bad mb-3 text-sm">
+                                                                <input type="email" placeholder="邮箱地址" class="form-field-bad text-sm">
+                                                                <p class="text-xs text-red-700 mt-2">（占位符不作数）</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="diagram-container">
+                                                            <p class="text-green-600">✅ 标签清晰可见：一目了然</p>
+                                                            <div class="form-diagram-example good flex flex-col justify-center items-start p-3">
+                                                                <label for="name_good" class="form-label">您的姓名:</label>
+                                                                <input type="text" id="name_good" placeholder="例如: 张三" class="form-field-good mb-3 text-sm">
+                                                                <label for="email_good" class="form-label">邮箱地址:</label>
+                                                                <input type="email" id="email_good" placeholder="例如: zhangsan@example.com" class="form-field-good text-sm">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <h5 class="text-sm font-semibold text-gray-700 mt-8 mb-4">要点 2.3.2：分组相关字段 (Group Related Fields)</h5>
+                                                    <p class="mb-4">将逻辑上相关的表单字段分组，并用标题或边框进行视觉上的区分。这有助于用户处理信息，减少认知负荷，让他们觉得表单更容易填写。</p>
+                                                    <div class="diagram-grid">
+                                                        <div class="diagram-container">
+                                                            <p class="text-red-600">❌ 字段混乱：不堪重负</p>
+                                                            <div class="form-diagram-example bad flex flex-col justify-center items-start p-3">
+                                                                <label class="form-label">姓名:</label><input type="text" class="form-field-bad mb-2">
+                                                                <label class="form-label">地址1:</label><input type="text" class="form-field-bad mb-2">
+                                                                <label class="form-label">城市:</label><input type="text" class="form-field-bad mb-2">
+                                                                <label class="form-label">电话:</label><input type="text" class="form-field-bad mb-2">
+                                                                <label class="form-label">邮编:</label><input type="text" class="form-field-bad">
+                                                            </div>
+                                                        </div>
+                                                        <div class="diagram-container">
+                                                            <p class="text-green-600">✅ 字段分组：清晰有序</p>
+                                                            <div class="form-diagram-example good flex flex-col justify-center items-start p-3">
+                                                                <fieldset class="form-group-fieldset">
+                                                                    <legend class="form-legend">个人信息</legend>
+                                                                    <label class="form-label">姓名:</label><input type="text" class="form-field-good mb-1">
+                                                                    <label class="form-label">电话:</label><input type="text" class="form-field-good">
+                                                                </fieldset>
+                                                                <fieldset class="form-group-fieldset">
+                                                                    <legend class="form-legend">地址信息</legend>
+                                                                    <label class="form-label">地址:</label><input type="text" class="form-field-good mb-1">
+                                                                    <label class="form-label">城市:</label><input type="text" class="form-field-good">
+                                                                </fieldset>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <h5 class="text-sm font-semibold text-gray-700 mt-8 mb-4">要点 2.3.3：即时反馈和错误处理 (Instant Feedback and Error Handling)</h5>
+                                                    <p class="mb-4">在用户填写表单时提供即时反馈，并在出现错误时给出清晰、有帮助的提示。在提交后才显示所有错误会让用户感到沮丧，因为他们不知道具体是哪个字段出了问题。</p>
+                                                    <div class="diagram-grid">
+                                                        <div class="diagram-container">
+                                                            <p class="text-red-600">❌ 滞后反馈：提交后才报错</p>
+                                                            <div class="form-diagram-example bad flex flex-col justify-center items-start p-3">
+                                                                <label class="form-label">邮箱:</label>
+                                                                <input type="text" class="form-field-bad mb-3">
+                                                                <button class="submit-button">提交</button>
+                                                                <p class="text-xs text-red-700 mt-2">（点击提交后才显示）</p>
+                                                                <p class="form-error-msg">邮箱格式不正确</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="diagram-container">
+                                                            <p class="text-green-600">✅ 即时反馈：及时修正</p>
+                                                            <div class="form-diagram-example good flex flex-col justify-center items-start p-3">
+                                                                <label class="form-label">邮箱:</label>
+                                                                <input type="email" value="invalid-email" class="form-field-good border-red-500 mb-1">
+                                                                <p class="form-error-msg">邮箱格式不正确 (Invalid email format)</p>
+                                                                <label class="form-label mt-3">姓名:</label>
+                                                                <input type="text" value="张三" class="form-field-good border-green-500">
+                                                                <p class="text-xs text-green-700 mt-1">✅ 有效 (Valid)</p>
+                                                                <button class="submit-button mt-3">提交</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Principle 2.4: Search Design -->
+                                    <div class="accordion-item bg-gray-50 rounded-lg shadow-sm">
+                                        <button class="accordion-header w-full text-left p-4 flex justify-between items-center text-base font-semibold">
+                                            <span>原则 2.4：搜索设计 (Search Design)</span>
+                                            <span class="accordion-icon text-lg font-thin">+</span>
+                                        </button>
+                                        <div class="accordion-content">
+                                            <div class="p-4 pt-0 text-gray-600">
+                                                <p class="mb-4">用户在使用搜索功能时，期望能够快速准确地找到所需信息。一个有效的搜索功能，能够极大地提升网站的可用性。</p>
+                                                <div class="space-y-6 mt-6">
+                                                    <h5 class="text-sm font-semibold text-gray-700">要点 2.4.1：提供搜索框 (Provide a Search Box)</h5>
+                                                    <p class="mb-4">在用户可能需要搜索的页面上，始终提供一个易于发现的搜索框。搜索框应有明确的标签或占位符，指示其功能。</p>
+                                                    <div class="diagram-grid">
+                                                        <div class="diagram-container">
+                                                            <p class="text-red-600">❌ 搜索框不明显或缺失</p>
+                                                            <div class="search-diagram-example bad flex items-center justify-center">
+                                                                <p class="text-gray-500 text-center">在此查找内容...</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="diagram-container">
+                                                            <p class="text-green-600">✅ 搜索框清晰可见</p>
+                                                            <div class="search-diagram-example good flex items-center justify-center">
+                                                                <input type="search" placeholder="搜索网站..." class="border border-green-500 p-2 rounded-md w-4/5">
+                                                                <button class="ml-2 bg-green-500 text-white p-2 rounded-md">Go</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <h5 class="text-sm font-semibold text-gray-700 mt-8 mb-4">要点 2.4.2：清晰的搜索结果 (Clear Search Results)</h5>
+                                                    <p class="mb-4">搜索结果页面应该清晰、有条理，显示匹配项的标题、简短描述和相关上下文。确保用户能快速识别哪些结果是他们想要的。</p>
+                                                    <div class="diagram-grid">
+                                                        <div class="diagram-container">
+                                                            <p class="text-red-600">❌ 结果杂乱无章</p>
+                                                            <div class="search-diagram-example bad flex flex-col items-start justify-start p-3">
+                                                                <div class="w-full bg-gray-200 h-4 mb-2"></div>
+                                                                <div class="w-2/3 bg-gray-300 h-3 mb-4"></div>
+                                                                <div class="w-full bg-gray-200 h-4 mb-2"></div>
+                                                                <div class="w-1/2 bg-gray-300 h-3"></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="diagram-container">
+                                                            <p class="text-green-600">✅ 结果清晰有条理</p>
+                                                            <div class="search-diagram-example good flex flex-col items-start justify-start p-3">
+                                                                <p class="font-bold text-blue-700 text-sm mb-1">产品A：超棒小工具</p>
+                                                                <p class="text-xs text-gray-600 mb-3">这是一款用于提升效率的智能小工具...</p>
+                                                                <p class="font-bold text-blue-700 text-sm mb-1">文章：小工具使用技巧</p>
+                                                                <p class="text-xs text-gray-600">了解如何充分利用您的小工具...</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <h5 class="text-sm font-semibold text-gray-700 mt-8 mb-4">要点 2.4.3：容错性 (Forgiveness)</h5>
+                                                    <p class="mb-4">搜索功能应具有一定的容错性，例如处理拼写错误、提供同义词建议，并在没有找到结果时给出有用的提示。</p>
+                                                    <div class="diagram-grid">
+                                                        <div class="diagram-container">
+                                                            <p class="text-red-600">❌ 零容错，无结果提示</p>
+                                                            <div class="search-diagram-example bad flex items-center justify-center">
+                                                                <p class="text-gray-500 text-center">未找到结果。</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="diagram-container">
+                                                            <p class="text-green-600">✅ 容错性强，提供建议</p>
+                                                            <div class="search-diagram-example good flex flex-col items-center justify-center">
+                                                                <p class="font-bold text-gray-700 mb-2">未找到“错别字”的结果。</p>
+                                                                <p class="text-sm text-gray-600">您是不是想找：<strong>“正确词”</strong>？</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Principle 2.5: Accessibility -->
+                                    <div class="accordion-item bg-gray-50 rounded-lg shadow-sm">
+                                        <button class="accordion-header w-full text-left p-4 flex justify-between items-center text-base font-semibold">
+                                            <span>原则 2.5：可访问性 (Accessibility)</span>
+                                            <span class="accordion-icon text-lg font-thin">+</span>
+                                        </button>
+                                        <div class="accordion-content">
+                                            <div class="p-4 pt-0 text-gray-600">
+                                                <p class="mb-4">确保网站和应用的设计对所有用户，包括残障人士，都是可访问和可用的。这不仅仅是合规性问题，更是优秀用户体验的基石，能够拓展用户群体。</p>
+                                                <div class="space-y-6 mt-6">
+                                                    <h5 class="text-sm font-semibold text-gray-700">要点 2.5.1：语义化HTML (Semantic HTML)</h5>
+                                                    <p class="mb-4">使用正确的HTML标签来构建内容结构，以便辅助技术（如屏幕阅读器）能正确解析和传达信息。</p>
+                                                    <div class="diagram-grid">
+                                                        <div class="diagram-container">
+                                                            <p class="text-red-600">❌ 非语义化标签</p>
+                                                            <div class="accessibility-diagram-example bad flex flex-col items-start justify-center p-3">
+                                                                <div class="font-bold text-sm mb-1">&lt;div class="title"&gt;标题&lt;/div&gt;</div>
+                                                                <div class="text-sm">&lt;span&gt;这是段落&lt;/span&gt;</div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="diagram-container">
+                                                            <p class="text-green-600">✅ 语义化HTML</p>
+                                                            <div class="accessibility-diagram-example good flex flex-col items-start justify-center p-3">
+                                                                <div class="font-bold text-sm mb-1 text-green-700">&lt;h1&gt;标题&lt;/h1&gt;</div>
+                                                                <div class="text-sm text-gray-700">&lt;p&gt;这是段落&lt;/p&gt;</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <h5 class="text-sm font-semibold text-gray-700 mt-8 mb-4">要点 2.5.2：清晰的替代文本 (Clear Alt Text)</h5>
+                                                    <p class="mb-4">为所有非文本内容（如图片、图表）提供有意义的替代文本，以便视觉障碍用户理解其内容。</p>
+                                                    <div class="diagram-grid">
+                                                        <div class="diagram-container">
+                                                            <p class="text-red-600">❌ 缺失或模糊替代文本</p>
+                                                            <div class="accessibility-diagram-example bad flex flex-col items-center justify-center">
+                                                                <p class="text-sm mb-2">&lt;img src="pic.jpg" alt=""&gt;</p>
+                                                                <p class="text-xs text-red-700">（屏幕阅读器无法理解图片内容）</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="diagram-container">
+                                                            <p class="text-green-600">✅ 清晰的替代文本</p>
+                                                            <div class="accessibility-diagram-example good flex flex-col items-center justify-center">
+                                                                <p class="text-sm mb-2 text-green-700">&lt;img src="report.png" alt="2023年销售额增长图表"&gt;</p>
+                                                                <p class="text-xs text-gray-700">（屏幕阅读器可清晰朗读图片内容）</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <h5 class="text-sm font-semibold text-gray-700 mt-8 mb-4">要点 2.5.3：键盘可导航性 (Keyboard Navigability)</h5>
+                                                    <p class="mb-4">确保所有交互元素都可以通过键盘进行操作（使用Tab键等），以便那些无法使用鼠标的用户也能顺利浏览和使用。</p>
+                                                    <div class="diagram-grid">
+                                                        <div class="diagram-container">
+                                                            <p class="text-red-600">❌ 仅限鼠标操作</p>
+                                                            <div class="accessibility-diagram-example bad flex flex-col items-center justify-center">
+                                                                <button class="bg-blue-300 text-gray-700 p-2 rounded-md mb-2">点击我</button>
+                                                                <p class="text-xs text-red-700">（无法通过键盘操作）</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="diagram-container">
+                                                            <p class="text-green-600">✅ 键盘可导航</p>
+                                                            <div class="accessibility-diagram-example good flex flex-col items-center justify-center">
+                                                                <button tabindex="0" class="bg-green-500 text-white p-2 rounded-md mb-2 focus:outline-none focus:ring-2 focus:ring-green-400">点击我</button>
+                                                                <p class="text-xs text-gray-700">（支持Tab键和Enter键操作）</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="accordion-item bg-white rounded-lg shadow-sm">
-                        <button class="accordion-header w-full text-left p-6 flex justify-between items-center">
-                            <span class="text-lg font-semibold">原则五：保持页面简洁，减少噪音 (Eliminate Noise)</span>
-                            <span class="accordion-icon text-xl font-thin">+</span>
-                        </button>
-                        <div class="accordion-content">
-                            <div class="p-6 pt-0 text-gray-600">
-                                <p class="mb-6">每个页面都充满了各种视觉元素，其中很多都是“噪音”（Noise，不必要的文字、图片、装饰等）。努力删除或弱化不重要的内容，让用户的注意力集中在核心任务上。一个干净、聚焦的界面能显著提升可用性。</p>
-                                <div class="diagram-grid">
-                                    <div class="diagram-container">
-                                        <p class="text-red-600">❌ 噪音过多，分散注意力</p>
-                                        <div class="diagram-example bad relative">
-                                            <div class="w-full h-1/3 bg-gray-200 mb-3"></div>
-                                            <div class="w-1/2 h-4 bg-gray-300 mb-2"></div>
-                                            <div class="w-full h-2 bg-red-200 absolute top-3 right-3 px-1 text-xs text-red-700">广告 (Ad)</div>
-                                            <div class="w-1/4 h-3 bg-blue-200 absolute bottom-3 left-3 px-1 text-xs text-blue-700">弹窗 (Popup)</div>
-                                            <div class="w-3/4 h-4 bg-gray-300"></div>
-                                        </div>
-                                    </div>
-                                    <div class="diagram-container">
-                                        <p class="text-green-600">✅ 简洁聚焦，提升效率</p>
-                                        <div class="diagram-example good">
-                                            <div class="w-full h-1/2 bg-amber-100 mb-3 flex items-center justify-center font-bold text-amber-800">核心内容区域 (Core Content)</div>
-                                            <div class="w-full h-4 bg-gray-300 mb-2"></div>
-                                            <div class="w-3/4 h-4 bg-gray-300"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
                 </div>
             </div>
         </section>
-        
+
         <section id="testing" class="pt-20 -mt-16 mb-32">
             <div class="section-content-block">
                 <div class="text-center mb-12">
@@ -653,6 +1388,8 @@
                         <li><strong class="font-semibold">分析 (Analyze)：</strong> 记录并总结发现的问题，特别是用户感到困惑或出错的地方。</li>
                         <li><strong class="font-semibold">改进 (Improve)：</strong> 根据发现的问题，迭代优化你的设计。</li>
                         <li><strong class="font-semibold">关于“忙碌用户测试” (The Fat Man Test)：</strong> 这是书中一个比喻，旨在强调设计应让最“不愿思考”的用户也能轻松使用。其核心是确保设计普适且直观。</li>
+                        <li><strong class="font-semibold">测试中关注什么：</strong> 重点观察用户何时出现“困惑”、“犹豫”、“重复操作”、“明显沮丧”等迹象。这些都是可用性问题的信号。</li>
+                        <li><strong class="font-semibold">如何处理问题：</strong> 不要试图一次性解决所有问题。优先解决最严重、最频繁影响用户体验的问题。有时一个小改动就能带来巨大提升。</li>
                     </ul>
                 </div>
             </div>
@@ -669,9 +1406,9 @@
                     <div class="phone-outline flex flex-col p-4">
                         <div class="w-full h-1/4 bg-amber-100 flex items-center justify-center text-xs font-bold text-amber-800 rounded-md mb-3">核心内容A (Core Content A)</div>
                         <div class="w-full h-1/6 bg-gray-200 flex items-center justify-center text-xs text-gray-600 rounded-md mb-3">次要信息B (Secondary Info B)</div>
-                        <div class="touch-target w-28 h-12 bottom-6 left-1/2 -translate-x-1/2 text-sm">大按钮 (Large Button)</div>
-                        <div class="touch-target w-14 h-14 top-3 right-3 text-sm">☰</div>
-                        <div class="touch-target w-14 h-14 top-3 left-3 text-sm">🏠</div>
+                        <div class="touch-target large-button text-sm">大按钮 (Large Button)</div>
+                        <div class="touch-target menu-icon text-sm">☰</div>
+                        <div class="touch-target home-icon text-sm">🏠</div>
                     </div>
                     <ul class="space-y-4 text-gray-700 list-disc list-inside max-w-md">
                         <li><strong class="font-semibold">屏幕更小 (Smaller Screens)：</strong>必须做出取舍，只保留最重要的内容和功能。避免信息过载。</li>
@@ -679,6 +1416,8 @@
                         <li><strong class="font-semibold">碎片化使用 (Fragmented Use)：</strong>用户可能在任何地方、任何时候使用你的产品。设计需要支持快速、短时的交互，让用户能迅速完成任务。</li>
                         <li><strong class="font-semibold">上下文更重要 (Context is Key)：</strong>移动设备可以利用用户的位置、时间和方向等上下文信息，提供更智能、个性化的服务。</li>
                         <li><strong class="font-semibold">减少输入 (Minimize Input)：</strong>尽量减少用户在移动设备上的文字输入，提供选项、自动填充等便捷方式。</li>
+                        <li><strong class="font-semibold">考虑拇指区 (Thumb Zone):</strong> 移动设备用户主要通过拇指进行交互。设计时应将主要操作按钮和常用元素放置在拇指容易触及的区域。</li>
+                        <li><strong class="font-semibold">离线优先 (Offline First):</strong> 考虑到移动网络的不稳定性，优先考虑离线使用体验，确保核心功能在无网络环境下也能运行。</li>
                     </ul>
                 </div>
             </div>
@@ -751,26 +1490,43 @@
                 document.querySelector(`.nav-link[href="${targetId}"]`).classList.add('active');
             });
 
-            const accordionItems = document.querySelectorAll('.accordion-item');
-            accordionItems.forEach(item => {
-                const header = item.querySelector('.accordion-header');
+            // Accordion logic for all accordion sections, supporting nesting
+            const allAccordionHeaders = document.querySelectorAll('.accordion-header');
+            allAccordionHeaders.forEach(header => {
                 header.addEventListener('click', () => {
+                    const item = header.closest('.accordion-item');
                     const content = item.querySelector('.accordion-content');
                     const icon = item.querySelector('.accordion-icon');
                     
-                    document.querySelectorAll('.accordion-content').forEach(c => {
-                        if (c !== content && c.style.maxHeight) {
-                            c.style.maxHeight = null;
-                            c.closest('.accordion-item').querySelector('.accordion-icon').textContent = '+';
+                    // Check if the clicked accordion is currently active
+                    const isActive = item.classList.contains('active');
+
+                    // Close all sibling accordions at the same level
+                    // This ensures only one accordion at a given level is open at a time
+                    const siblingAccordionItems = Array.from(item.parentNode.children).filter(child => child.classList.contains('accordion-item'));
+                    siblingAccordionItems.forEach(siblingItem => {
+                        if (siblingItem !== item && siblingItem.classList.contains('active')) {
+                            siblingItem.classList.remove('active');
+                            const siblingIcon = siblingItem.querySelector('.accordion-icon');
+                            if (siblingIcon) {
+                                siblingIcon.textContent = '+';
+                            }
+                            // Set max-height to 0 for a smooth collapse
+                            siblingItem.querySelector('.accordion-content').style.maxHeight = '0px';
                         }
                     });
 
-                    if (content.style.maxHeight) {
-                        content.style.maxHeight = null;
+                    // Toggle the clicked accordion
+                    if (isActive) {
+                        item.classList.remove('active');
                         icon.textContent = '+';
+                        // Set max-height to 0 for a smooth collapse
+                        content.style.maxHeight = '0px';
                     } else {
-                        content.style.maxHeight = content.scrollHeight + 'px';
+                        item.classList.add('active');
                         icon.textContent = '-';
+                        // Set max-height to a very large value to ensure content is never clipped
+                        content.style.maxHeight = '9999px';
                     }
                 });
             });
